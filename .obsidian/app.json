@@ -1,0 +1,8 @@
+{
+  "useMarkdownLinks": false,
+  "newFileLocation": "current",
+  "newLinkFormat": "shortest",
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "alwaysUpdateLinks": true
+}
