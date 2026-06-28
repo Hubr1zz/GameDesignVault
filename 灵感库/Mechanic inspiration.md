@@ -1,6 +1,10 @@
-﻿# Mechanic inspiration
+# Mechanic inspiration
 
-Idea Birthday: 2026年5月10日 02:42
-Related Pages: 无标题 (https://app.notion.com/p/2a0ca75016908086a4e1dfaf6162d381?pvs=21), 无标题 (https://app.notion.com/p/2b6ca75016908072b79bfaf9fd0c44f7?pvs=21)
+本页是旧 Notion 导入残留，用于暂存尚未拆分到独立灵感页的机制素材。
 
-[无标题](Mechanic%20inspiration/%E6%97%A0%E6%A0%87%E9%A2%98%20abd1356d200d83f796b80109b83190cd.csv)
+当前状态：待整理。
+
+说明：
+
+- 原始 Notion 链接仅作为导入痕迹，不再作为权威来源。
+- 后续如需继续使用其中内容，应拆分为新的独立灵感页并补上 YAML 字段。

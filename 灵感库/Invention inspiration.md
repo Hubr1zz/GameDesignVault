@@ -1,7 +1,6 @@
-﻿# Invention inspiration
+# Invention inspiration
 
 Idea Birthday: 2026年5月10日 02:42
-Related Pages: 无标题 (https://app.notion.com/p/2a0ca75016908091a97ac2a359c6e375?pvs=21)
 
 - 基地基建
     
@@ -12,3 +11,10 @@ Related Pages: 无标题 (https://app.notion.com/p/2a0ca75016908091a97ac2a359c6e
     **注意**：经典模式下玩家基本无法造出全部发明；一些发明专门用来争对Boss。玩家目标即为在挑战它们之前解锁对应发明。
     
     基地设施包含生产型和发明：
+
+---
+
+说明：
+
+- 本页源自旧 Notion 导入，仍可作为灵感仓使用。
+- 其中残留的 Notion 来源仅用于追溯，不再作为现行文档入口。

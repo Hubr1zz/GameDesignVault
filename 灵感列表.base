@@ -1,0 +1,9 @@
+views:
+  - type: table
+    name: 表格
+    filters:
+      and:
+        - file.inFolder("灵感库")
+    groupBy:
+      property: created
+      direction: DESC

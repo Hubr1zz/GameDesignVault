@@ -1,7 +1,6 @@
-﻿# Monster inspiration
+# Monster inspiration
 
 Idea Birthday: 2026年5月10日 02:42
-Related Pages: 无标题 (https://app.notion.com/p/2a0ca75016908086a4e1dfaf6162d381?pvs=21), 无标题 (https://app.notion.com/p/2a0ca7501690803e91b5fbc5ad60e85d?pvs=21)
 
 - 机制灵感：
     - 每次受击或者攻击被闪避，获得1 rage，rage到达X时使用消耗rage进行特殊攻击。
@@ -49,3 +48,10 @@ Related Pages: 无标题 (https://app.notion.com/p/2a0ca75016908086a4e1dfaf6162d
     - 描述
     - 受击部位
     - 行动卡
+
+---
+
+说明：
+
+- 本页可继续作为怪物灵感仓，但不应被视为怪物系统正式规则文档。
+- 如其中某个想法进入正式设计，请拆成独立灵感页或移入对应设计文档。
