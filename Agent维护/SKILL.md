@@ -100,13 +100,21 @@ question:
    ---
    status: New
    category: Design
-   type:
-     - Inspiration
+   type: Content
    related:
-     - "[[设计文档/相关文档]]"
+     - "[[相关文档]]"
    created: YYYY-MM-DD
    ---
    ```
+
+   Set `type` to exactly one of:
+   - `Content` for concrete game content, such as a specific item, line of text, character, event,
+     encounter, or other authored content;
+   - `System` for a change to or definition of game rules, mechanics, procedures, or systemic
+     behavior.
+
+   Do not use `Inspiration` as a `type`; being stored in `灵感库/` already identifies the note as an
+   inspiration-library entry.
 
 5. In the body, record only:
    - the user's idea summary;
@@ -122,11 +130,13 @@ question:
 
 When the user reports a problem, contradiction, unclear rule, balance concern, or production risk:
 
-1. Prefer creating an issue-style Markdown note in `灵感库/` with `category: Issue` and
+1. Prefer creating an issue-style Markdown note in `灵感库/` with `category: 问题Issue` and
    `status: New`.
-2. Link affected documents in `related`.
-3. Record evidence, suspected cause, possible fixes, and open questions.
-4. If the issue belongs directly inside a design doc, add a short `待解决` or `Open Questions`
+2. Treat requests such as “记录问题”, “记下这个问题”, “这个设计不好但还没想好怎么改”, and
+   equivalent wording as issue-recording requests, not ordinary idea-recording requests.
+3. Link affected documents in `related`.
+4. Record evidence, suspected cause, possible fixes, and open questions.
+5. If the issue belongs directly inside a design doc, add a short `待解决` or `Open Questions`
    section only when the user asks to update that document.
 
 ### 3. Add Terminology
@@ -235,3 +245,8 @@ If local files, exported content, remote content, or user-provided snippets disa
 - Maintain `修改历史.md` as the running summary of completed project-content edits only.
 - Formal design changes must pass both the Game Designer Review and the Implementation Review first.
 - When uncertain whether a change is structural, conceptual, or just a note, ask before editing.
+- In `related`, use the target note's unique basename by default, such as `[[C]]`, rather than a
+  full vault path such as `[[A/B/C]]`. Use a path only when duplicate basenames make the short link
+  ambiguous.
+- Whenever creating a Git commit, write a commit message that briefly summarizes the content of
+  that commit.
