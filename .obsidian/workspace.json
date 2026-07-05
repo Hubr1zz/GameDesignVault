@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "修改历史.md",
+                "file": "术语词典/超时.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "修改历史"
+              "title": "超时"
             }
           }
         ]
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "[\"english\"]",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -75,11 +75,12 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 284.5
   },
   "right": {
     "id": "baae73d5c23ba4bb",
@@ -95,9 +96,9 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "修改历史.md",
+                "file": "术语词典/超时.md",
                 "collapseAll": true,
-                "extraContext": false,
+                "extraContext": true,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
@@ -105,7 +106,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "修改历史 的反向链接列表"
+              "title": "超时 的反向链接列表"
             }
           },
           {
@@ -114,12 +115,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "设计文档/地图物件 -例子Example Map Objects.md",
+                "file": "术语词典/超时.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "地图物件 -例子Example Map Objects 的出链列表"
+              "title": "超时 的出链列表"
             }
           },
           {
@@ -157,20 +158,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "设计文档/地图物件 -例子Example Map Objects.md",
+                "file": "术语词典/超时.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "地图物件 -例子Example Map Objects 的大纲"
+              "title": "超时 的大纲"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 240.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -186,13 +188,20 @@
   },
   "active": "b9afceb315484d71",
   "lastOpenFiles": [
+    "DataView.base",
+    "术语词典.md",
+    "灵感库/狩猎阶段地图探索系统：地形卡与小地块.md",
+    "待办清单.md",
+    "README.md",
+    "INDEX.md",
+    "灵感库/部位卡进阶机制：堆叠与持续部位.md",
+    "黑板总览.canvas",
     "灵感库/狩猎阶段地图生物卡组交互与条件击杀.md",
-    "灵感列表.base",
+    "灵感库/怪物行动卡带前摇后摇，超时机制设计.md",
+    "灵感库/矿脉：贪婪抽取资源机制.md",
+    "灵感库/护甲不是消耗品而是概率阻挡，精准意味着瞄准无护甲位置.md",
     "修改历史.md",
     "2026-06-26.md",
-    "术语词典.md",
-    "待办清单.md",
-    "未命名.canvas",
     "设计文档/通用/猎人 Hunter.md",
     "术语词典/力量.md",
     "术语词典/胆识.md",
@@ -206,19 +215,12 @@
     "美术参考/butcher1.png",
     "美术参考/butcher.png",
     "美术参考/image1.png",
-    "INDEX.md",
-    "灵感库/矿脉：贪婪抽取资源机制.md",
     "术语词典/护甲.md",
     "未命名.md",
     "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/猎人行动卡 Action cards.md",
     "设计文档/战斗系统 Combat system.md",
-    "设计文档/营地阶段 Settlement.md",
-    "设计文档/通用/物品 Items.md",
-    "内容设计案例/事件.md",
-    "内容设计案例/叙事.md",
     "设计文档/通用",
     "Agent维护",
-    "设计文档/物品 -例子.md",
     "未命名",
     "Workshop",
     "设计文档/营地阶段 Settlement Phase",

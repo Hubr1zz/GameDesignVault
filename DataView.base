@@ -1,0 +1,34 @@
+views:
+  - type: table
+    name: 表格
+    filters:
+      and:
+        - file.inFolder("灵感库")
+    groupBy:
+      property: created
+      direction: DESC
+    order:
+      - file.name
+      - type
+      - category
+      - related
+    sort:
+      - property: category
+        direction: ASC
+      - property: related
+        direction: DESC
+    cardSize: 80
+    imageFit: contain
+    image: note.name
+    columnSize:
+      file.name: 339
+      note.type: 214
+      note.category: 159
+  - type: cards
+    name: 术语词典
+    filters:
+      and:
+        - file.inFolder("术语词典")
+    cardSize: 160
+    image: note.created
+    imageAspectRatio: 0.5
