@@ -1,4 +1,8 @@
-﻿# 对赌翻面：基于Boss行动的恢复条件
+﻿---
+category: inspiration
+---
+
+# 对赌翻面：基于Boss行动的恢复条件
 
 Idea Birthday: 2026年5月28日 02:35
 

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-08-03T13:31:44+00:00",
+  "baseline": ".agent-bridge/design-hash-baseline.json",
+  "source": {
+    "type": "git",
+    "revision": "HEAD"
+  },
+  "changed": [
+    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/怪物 Monster.md",
+    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/猎人行动卡 Action cards.md",
+    "设计文档/狩猎阶段 Hunt Phase/地图 Map.md",
+    "设计文档/营地阶段 Settlement Phase/Invention发明.md",
+    "设计文档/营地阶段 Settlement Phase/Timeline.md",
+    "设计文档/通用/事件 Events.md",
+    "设计文档/通用/物品 Items.md",
+    "设计文档/通用/猎人 Hunter.md"
+  ],
+  "added": [
+    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/战斗系统 Combat system.md",
+    "设计文档/营地阶段 Settlement Phase/工坊Workshop.md",
+    "设计文档/通用/死亡判定.md"
+  ],
+  "removed": [
+    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/战斗系统 Combat system (索引).md",
+    "设计文档/营地阶段 Settlement Phase/Workshop.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/冶炼.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/加工台.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/加工台升级：精密加工.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/医馆.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/护甲工坊.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/武器工坊.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/烹饪.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/研究台.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/种植台.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/科学研究.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/训练场.md",
+    "设计文档/营地阶段 Settlement Phase/工坊/魔法研究.md"
+  ],
+  "hasChanges": true
+}

@@ -1,105 +1,100 @@
 ---
 name: gamedesignvault-manager
 description: >
-  Manage the "GameDesignVault" Markdown/Obsidian workspace for the game design project
-  "Hunting in Darkness". Use this skill whenever the user wants to read, edit, reorganize,
-  or create local Markdown design documents; record new inspirations or issues; add or link
-  terminology; maintain folders, wiki links, and optional YAML frontmatter; resolve conflicts
-  between local, exported, and remote content; maintain the shared pending-work backlog in
-  `待办清单.md`; or summarize completed project-content edits in `修改历史.md`. Trigger on
-  phrases such as "new idea/inspiration", "record this", "add term/terminology",
-  "reorganize docs", "update the design doc", and Chinese phrases including "我有新的灵感"、
-  "我想到了"、"有个新想法"、"我有个想法"、"修改XXX机制"、"新机制"、"我们讨论一下"、"记录一下"。
-  When the user proposes a design, always perform both a game-design completeness review and an
-  implementation-clarity review in the conversation before updating formal design documents.
+  管理本地 GameDesignVault Markdown/Obsidian 游戏设计库，用于项目 Hunting in Darkness。
+  当用户要求阅读、修改、整理或创建本地设计文档；记录灵感、问题、术语；维护文件夹、
+  Obsidian wiki 链接、YAML frontmatter；处理本地、导出或远程内容冲突；维护
+  `待办清单.md`；或在 `修改历史.md` 中总结项目内容改动时使用本 skill。
+  触发语包括 "new idea/inspiration", "record this", "add term/terminology",
+  "reorganize docs", "update the design doc"，以及中文短语“我有新的灵感”、
+  “我想到了”、“有个新想法”、“我有个想法”、“修改XXX机制”、“新机制”、
+  “我们讨论一下”、“记录一下”、“记录问题”。当用户提出设计内容时，在更新正式
+  设计文档前，必须先在对话中完成设计完整性审查与实现清晰度审查。
 ---
 
 # GameDesignVault Markdown Manager
 
-Operate on the local `GameDesignVault` Markdown vault. The authoritative source of truth is the
-Markdown files in this repository, not any Notion database, exported archive, or remote copy.
+本 skill 用于维护本地 `GameDesignVault` Markdown 库。该仓库中的 Markdown 文件是唯一可信来源；不要把 Notion 数据库、导出包或远程副本当作默认权威来源，除非用户明确要求比较或导入。
 
-## Before You Start
+## 开始前
 
-1. Read `Agent维护/workspace-map.md` to understand the folder map and document responsibilities.
-2. Read `待办清单.md` before editing so you know which follow-up tasks are already tracked.
-3. Inspect the current files with `rg --files` and search content with `rg` before editing.
-4. Treat Obsidian wiki links (`[[Page]]`, `[[folder/Page|label]]`) and folder structure as the
-   primary document graph. YAML frontmatter is optional metadata, not the hierarchy itself.
-5. Check `git status --short` before larger edits. If existing unrelated changes are present, leave
-   them alone.
+1. 先读 `Agent维护/workspace-map.md`，了解目录职责。
+2. 编辑前读 `待办清单.md`，避免重复记录已知后续事项。
+3. 用 `rg --files` 查文件，用 `rg` 搜内容。
+4. 以 Obsidian wiki 链接（如 `[[Page]]`、`[[folder/Page|label]]`）和文件夹结构维护文档图谱；YAML frontmatter 只作为轻量元数据。
+5. 大改前检查 `git status --short`。已有无关改动属于用户，必须保留，不要顺手整理。
 
-## Mandatory Pre-Edit Review
+## 正式设计文档的前置审查
 
-When the user proposes a new design, mechanic, workflow, content rule, or structural rule change,
-complete the following reviews in the conversation before updating any formal file under `设计文档/`.
+当用户提出新的设计、机制、流程、内容规则或结构规则，且可能写入 `设计文档/` 时，必须先在对话中完成以下审查。
 
-### 1. Game Designer Review
+### 1. 设计完整性审查（Game Designer Review）
 
-Review the idea as a professional game designer first. Check whether the design is:
+从专业游戏设计角度检查该设计是否：
 
-- complete enough to stand on its own;
-- functionally closed rather than only a fragment;
-- harmonious with existing systems, pacing, incentives, and player experience;
-- clear about rewards, penalties, and failure consequences.
+- 足够完整，能够独立成立；
+- 功能闭环，而不是只有片段；
+- 与现有系统、节奏、激励和玩家体验协调；
+- 奖励、惩罚、失败后果清楚。
 
-In the conversation, summarize:
+在对话中输出：
 
 - `设计完整性问题`
 - `相关内容`
 
-For `相关内容`, only list relevant current content titles, preferably as wiki-link style references.
-Do not add extra analysis there unless an actual conflict exists.
+`相关内容` 只列相关现有内容标题，优先使用 wiki 链接风格；除非存在实际冲突，不要额外展开分析。
 
-### 2. Implementation Review
+### 2. 实现清晰度审查（Implementation Review）
 
-Review the same idea as a programmer or systems implementer. Check whether the design is:
+从程序和系统实现角度检查该设计是否：
 
-- specified enough to implement without inventing core behavior;
-- clear about triggers, inputs, outputs, states, transitions, and edge cases;
-- explicit enough for UI, data, content scripting, and rule execution.
+- 足够明确，不需要实现者发明核心行为；
+- 触发条件、输入、输出、状态、状态转换和边界情况清楚；
+- UI、数据、内容脚本和规则执行足够明确。
 
-This review should appear in the conversation when:
+以下情况需要在对话中输出该审查：
 
-- the user wants to promote the idea into formal design documents;
-- the user asks to finalize or formalize the rule;
-- the requested edit would materially change `设计文档/`.
+- 用户想把灵感推进到正式设计文档；
+- 用户要求定稿、正式化规则；
+- 本次编辑会实质改变 `设计文档/`。
 
-Do not record Implementation Review details inside inspiration notes.
+不要把 Implementation Review 的细节写进灵感笔记。
 
-### Blocking Rule
+### 阻塞规则
 
-If either review finds unresolved gaps, do not update formal design documents yet.
+如果任一审查发现未解决缺口，不要直接更新正式设计文档。
 
-Instead:
+此时应：
 
-1. Present the gaps to the user in the conversation.
-2. Separate them into:
+1. 在对话中说明缺口；
+2. 分为：
    - `设计完整性问题`
    - `实现不清晰问题`
-3. Wait for clarification, or record the idea in `灵感库/` if the user wants it saved before it is
-   fully resolved.
+3. 等待用户澄清；如果用户只想先保存，则记录到 `灵感库/`。
 
-Only update `设计文档/` after both reviews pass or the user explicitly tells you to document it as a
-draft with known gaps.
+只有当两项审查通过，或用户明确要求“带着已知缺口作为草稿写入”时，才更新 `设计文档/`。
 
-## Core Workflows
+## 核心流程
 
-### 1. Add a New Inspiration
+### 1. 新增灵感
 
-When the user shares a new idea, mechanic, content seed, UX note, art reference, or unresolved design
-question:
+当用户分享新想法、机制、内容种子、UX 注记、美术参考或未解决设计问题时：
 
-1. Search `设计文档/`, `灵感库/`, `术语词典/`, and `内容设计案例/` for related concepts.
-2. Run the Game Designer Review in the conversation.
-3. Create a new `.md` file under `灵感库/` with a concise Chinese title unless the user requests an
-   English title. Use a filename that can stand alone in Obsidian.
-4. Add YAML frontmatter. Prefer:
+1. 搜索 `设计文档/`、`灵感库/`、`术语词典/`、`内容设计案例/` 中的相关概念。
+   - 搜索后必须判断是否已存在同一机制、事件或内容对象的灵感。若存在，优先合并到该笔记，不创建措辞不同但内容重复的新条目。
+   - 合并时保留原始 `created` 日期，补充或更新 `updated: YYYY-MM-DD`；只在新输入的触发方式、系统归属或设计目的独立时，才拆为新笔记。
+2. 在对话中完成 Game Designer Review。
+3. 写文件前，按逻辑相关性拆分用户输入：
+   - 只有当多个点描述同一机制、同一事件、同一内容对象或强耦合规则簇时，才放入同一条灵感。
+   - 如果点之间触发方式不同、所属系统不同、设计目的不同，或其中一条只是独立事件，应拆成多个灵感。
+   - 如果触发方式或关系未说明，把它写为未定问题；不要从相邻灵感中推断归属。
+4. 对没有可合并对象的灵感，在 `灵感库/` 下创建一个独立 `.md` 文件。标题用简洁中文，除非用户要求英文标题。
+5. 添加 YAML frontmatter。优先使用：
 
    ```yaml
    ---
    status: New
-   category: Design
+   category: inspiration
    type: Content
    related:
      - "[[相关文档]]"
@@ -107,45 +102,43 @@ question:
    ---
    ```
 
-   Set `type` to exactly one of:
-   - `Content` for concrete game content, such as a specific item, line of text, character, event,
-     encounter, or other authored content;
-   - `System` for a change to or definition of game rules, mechanics, procedures, or systemic
-     behavior.
+   `type` 只能使用以下枚举值之一：
 
-   Do not use `Inspiration` as a `type`; being stored in `灵感库/` already identifies the note as an
-   inspiration-library entry.
+   - `Content`：具体内容设计，例如具体道具、文案、角色、事件、遭遇或其他 authored content。
+   - `System`：规则、机制、流程、系统行为的修改或定义。
 
-5. In the body, record only:
-   - the user's idea summary;
-   - current design conflicts, if any.
-6. You may refine, condense, or clarify the user's wording when recording, as long as you do not
-   change the intended meaning.
-7. Do not record design-goal analysis, passed checks, implementation review details, suggestions, or
-   open decomposition questions inside the inspiration note.
-8. Do not directly merge a fresh inspiration into formal `设计文档/` unless the user explicitly asks.
-   New ideas go to `灵感库/` first.
+   不要使用 `Inspiration` 作为 `type`；条目在 `灵感库/` 中这一事实已经说明它是灵感。
 
-### 2. Add a New Issue
+6. 正文只记录：
+   - 用户想法的摘要；
+   - 当前设计冲突（如有）。
+7. 正文和 `当前未定问题` 中，如果提到已有页面定义的概念，应尽量直接使用 Obsidian wiki 链接。例如死亡判定定义在 `猎人 Hunter` 时，写 `[[猎人 Hunter|死亡判定]]`，不要只写纯文本“死亡判定”。
+8. 如果添加 `当前未定问题`，每项应简洁、抽象，优先写成短问题维度，例如：
+   - `触发方式`
+   - `结算时机`
+   - `是否可记录不同数值`
 
-When the user reports a problem, contradiction, unclear rule, balance concern, or production risk:
+   不要把所有猜测选项都写进未定问题，除非这些选项本身是用户提出的重要设计内容。
+9. 可以提炼、压缩、澄清用户措辞，但不要改变原意。
+10. 不要在灵感笔记中写设计目标分析、已通过检查、Implementation Review 细节、建议方案或开放拆解过程。
+11. 除非用户明确要求，不要把新灵感直接合并进正式 `设计文档/`。新想法默认先进 `灵感库/`。
 
-1. Prefer creating an issue-style Markdown note in `灵感库/` with `category: 问题Issue` and
-   `status: New`.
-2. Treat requests such as “记录问题”, “记下这个问题”, “这个设计不好但还没想好怎么改”, and
-   equivalent wording as issue-recording requests, not ordinary idea-recording requests.
-3. Link affected documents in `related`.
-4. Record evidence, suspected cause, possible fixes, and open questions.
-5. If the issue belongs directly inside a design doc, add a short `待解决` or `Open Questions`
-   section only when the user asks to update that document.
+### 2. 新增问题
 
-### 3. Add Terminology
+当用户报告问题、矛盾、规则不清、平衡担忧或生产风险时：
 
-When the user defines a new game term, or a design doc uses a recurring term that needs a stable
-definition:
+1. 优先在 `灵感库/` 创建问题型 Markdown 笔记，使用 `category: inspiration`、`kind: Issue` 和 `status: New`。
+2. “记录问题”、“记下这个问题”、“这个设计不好但还没想好怎么改”等表达，都视为记录问题，不视为普通想法。
+3. 在 `related` 中链接受影响文档。
+4. 记录证据、疑似原因、可能修法和开放问题。
+5. 只有当用户要求更新正式设计文档时，才在设计文档中加入简短 `待解决` 或 `Open Questions` 小节。
 
-1. Search `术语词典/` to confirm whether the term already exists.
-2. If absent, create `术语词典/<术语>.md` with YAML frontmatter:
+### 3. 新增术语
+
+当用户定义新游戏术语，或设计文档反复使用某个需要稳定定义的概念时：
+
+1. 搜索 `术语词典/`，确认术语是否已存在。
+2. 如果不存在，创建 `术语词典/<术语>.md`，使用：
 
    ```yaml
    ---
@@ -156,60 +149,55 @@ definition:
    ---
    ```
 
-3. The page body should start with `# 术语` and then give the definition, usage notes, related
-   systems, and links back to primary design documents.
-4. Link the first meaningful occurrence in design or inspiration text back to the term with
-   `[[术语]]` or `[[术语|显示文本]]`.
+3. 正文以 `# 术语` 开头，写定义、使用说明、相关系统和主要设计文档链接。
+4. 在设计文档或灵感中，首次有意义出现该术语时，用 `[[术语]]` 或 `[[术语|显示文本]]` 链回术语页。
 
-### 4. Update Design Documents
+### 4. 更新正式设计文档
 
-When editing `设计文档/`:
+编辑 `设计文档/` 时：
 
-1. Read the target file and nearby related files first.
-2. If the edit changes design meaning rather than just wording or links, run both the Game Designer
-   Review and the Implementation Review in the conversation first.
-3. Preserve the user's wording unless the requested change requires rewriting it.
-4. Use wiki links for cross-document references and term references.
-5. Use folders, headings, and wiki links for hierarchy. Do not recreate Notion-style relation trees.
-6. If adding optional YAML frontmatter, keep it small and useful, such as `status`, `type`, `phase`,
-   `related`, or `updated`.
-7. When moving or renaming files, update obvious inbound links and any curated navigation pages.
+1. 先读目标文件和附近相关文件。
+2. 如果编辑改变设计含义，而不只是改文字或链接，先在对话中完成 Game Designer Review 和 Implementation Review。
+3. 尽量保留用户措辞，除非请求本身需要重写。
+4. 使用 wiki 链接连接相关文档和术语。
+5. 用文件夹、标题和 wiki 链接维护层级，不要重建 Notion 式关系树。
+6. 正式设计文档只写设计内容。不要添加 `文档用途`、`本页用途`、`Purpose`、`Document Purpose` 等解释页面用途的元说明。
+7. 不要添加“本页如何阅读”“本页覆盖什么”“为什么需要本页”之类框架性说明，除非用户明确要求。
+8. 如需 YAML frontmatter，保持小而有用，例如 `status`、`type`、`phase`、`related`、`updated`。
+9. 移动或重命名文件时，更新明显的入链和导航页。
 
-### 5. Query / Read Design Content
+### 5. 查询或阅读设计内容
 
-When the user asks about existing design:
+当用户询问已有设计时：
 
-1. Search with `rg` across the relevant directories.
-2. Read the exact Markdown files before answering.
-3. Summarize the relevant rule, note whether it is formal design (`设计文档/`), inspiration
-   (`灵感库/`), terminology (`术语词典/`), or example content (`内容设计案例/`), and mention any
-   conflicts or open questions you notice.
+1. 用 `rg` 搜索相关目录。
+2. 读取精确 Markdown 文件后再回答。
+3. 回答中说明相关规则来自正式设计（`设计文档/`）、灵感（`灵感库/`）、术语（`术语词典/`）还是案例（`内容设计案例/`）。
+4. 如发现冲突或开放问题，简要说明。
 
-### 6. Maintain The Pending Backlog
+### 6. 维护待办清单
 
-After every document-editing request:
+每次文档编辑后：
 
-1. Re-open `待办清单.md`.
-2. Remove items that were fully completed by the current edit.
-3. Add any newly discovered, clearly scoped, not-started follow-up tasks.
-4. Keep entries concise and action-oriented.
-5. Do not use the backlog for already completed work, vague ideas with no next action, or issues
-   that are still being actively edited in the same request.
+1. 重新打开 `待办清单.md`。
+2. 删除本次已经完全完成的事项。
+3. 添加新发现、范围清楚、尚未开始的后续任务。
+4. 条目保持简短、行动导向。
+5. 不要把已完成工作、模糊想法，或仍在本次编辑中处理的问题写进待办。
 
-### 7. Maintain Edit History
+### 7. 维护修改历史
 
-After every successful modification to project content:
+每次成功修改项目内容后：
 
-1. Re-open `修改历史.md`.
-2. Add a concise summary row for that turn's completed edits.
-3. Fill in both `分类` and `内容`.
-4. Use the current date.
-5. Group closely related edits into one row when that is easier to read.
-6. Do not add planned work, failed attempts, or purely conversational review notes.
-7. Do not record meta-maintenance changes outside the design project itself, such as updates to
-   `Agent维护/`, skill rules, or other workflow-only changes.
+1. 重新打开 `修改历史.md`。
+2. 添加一行本轮已完成编辑的简短摘要。
+3. 填写 `分类` 和 `内容`。
+4. 使用当前日期。
+5. 密切相关的编辑可以合并成一行。
+6. 不记录计划、失败尝试或纯对话审查。
+7. 不记录仅维护 agent 工作流的变更，例如 `Agent维护/` 或 skill 规则更新。
 
-Recommended categories include:
+推荐 `分类`：
 
 - `决战战斗`
 - `探索狩猎`
@@ -221,32 +209,34 @@ Recommended categories include:
 - `文档整理`
 - `其他`
 
-## Version Conflict Rule
+## 版本冲突规则
 
-If local files, exported content, remote content, or user-provided snippets disagree:
+如果本地文件、导出内容、远程内容或用户片段互相冲突：
 
-1. Do not silently choose one version.
-2. List the differences with file/source names and the conflicting text or meaning.
-3. Ask the user which version to keep or how to merge.
-4. Only apply edits after the user chooses, unless the conflict is purely formatting and the intended
-   content is unambiguous.
+1. 不要静默选择一个版本。
+2. 按文件或来源列出差异，并说明冲突文本或含义。
+3. 询问用户保留哪个版本或如何合并。
+4. 只有用户选择后再应用；纯格式冲突且意图明确时除外。
 
-## Important Rules
+## 重要规则
 
-- Markdown files in `GameDesignVault` are the source of truth.
-- Do not use Notion tools or Notion database IDs for normal work in this vault.
-- New ideas always enter `灵感库/` first unless the user explicitly asks to update formal design docs.
-- When recording user ideas or rules, you may improve phrasing and extract the core meaning as long
-  as the content itself does not change.
-- Term definitions live in `术语词典/`; references should link back with `[[术语]]`.
-- Hierarchy is maintained through folders, headings, and wiki links, with optional YAML frontmatter
-  for metadata.
-- Maintain `待办清单.md` as the single shared list of not-started follow-up work.
-- Maintain `修改历史.md` as the running summary of completed project-content edits only.
-- Formal design changes must pass both the Game Designer Review and the Implementation Review first.
-- When uncertain whether a change is structural, conceptual, or just a note, ask before editing.
-- In `related`, use the target note's unique basename by default, such as `[[C]]`, rather than a
-  full vault path such as `[[A/B/C]]`. Use a path only when duplicate basenames make the short link
-  ambiguous.
-- Whenever creating a Git commit, write a commit message that briefly summarizes the content of
-  that commit.
+- 只有本轮任务可能修改或已经修改 `设计文档/` 内正式设计内容，或用户明确要求手动导入指定正式文档时，才读取 `.agent-bridge/project-sync.json`。不存在或 `enabled=false` 时立即结束，不加载项目层内容；启用时显式读取 `.agents/skills/document-change-to-openspec/SKILL.md`。自动导入在开始时建立变更基线、结束时只检测 `设计文档/` 内正式设计内容变化；手动导入只处理用户指定的正式文档。两者都仅生成导入报告及其中的 Spec 提案。
+- 自动同步不得运行 OpenSpec 命令、调用 `openspec-propose` / `openspec-update-change`、创建 `openspec/changes/*`、写入 delta spec、apply、sync 或 archive。导入报告中的 Spec 提案不是 OpenSpec change，也不是正式 Spec。
+- OpenSpec draft change 只能由用户在导入报告面板对具体 Spec 提案点击“加入changes”后创建；正式 Spec 只能在用户通过对话明确要求归档对应 open change 后生成。
+- 纯问答、只读检索、记录灵感、记录问题、术语词典维护、内容设计案例维护、Obsidian 配置、Agent 工作流/skill 规则更新、待办清单或修改历史维护，不触发 bridge 检查；若这些任务没有实质改动 `设计文档/`，不得读取项目层内容。
+- `GameDesignVault` 中的 Markdown 文件是事实来源。
+- 正常维护本库时，不要使用 Notion 工具或 Notion database ID。
+- 新想法默认先进 `灵感库/`，除非用户明确要求更新正式设计文档。
+- 不要因为用户在同一条消息中提到多个点，就把不相关灵感合并。按触发、系统、内容对象和设计目的拆分；只有逻辑依赖清楚时才合并。
+- 记录用户想法或规则时，可以优化措辞和提炼核心含义，但不能改变内容本身。
+- 术语定义放在 `术语词典/`；引用时用 `[[术语]]` 链回。
+- 灵感笔记中，已知设计概念应尽量链接，包括 `当前未定问题` 中的概念。
+- 未定问题写成紧凑标签或短问题；避免长串猜测选项，除非选项本身是用户提出的设计内容。
+- 层级通过文件夹、标题和 wiki 链接维护，YAML frontmatter 只做轻量元数据。
+- 正式 `设计文档/` 不应包含 `文档用途` 等元说明，除非用户明确要求。
+- 维护 `待办清单.md` 作为唯一共享的未开始事项列表。
+- 维护 `修改历史.md` 作为项目内容编辑摘要；不要记录纯 workflow/skill 维护。
+- 正式设计变更必须先通过 Game Designer Review 和 Implementation Review。
+- 不确定某项改动是结构、概念还是普通笔记时，先问用户。
+- `related` 默认使用目标页面的唯一 basename，例如 `[[C]]`，不要写完整路径 `[[A/B/C]]`；只有 basename 重复导致歧义时才使用路径。
+- 每次创建 Git commit 时，commit message 必须简要总结本次提交内容。

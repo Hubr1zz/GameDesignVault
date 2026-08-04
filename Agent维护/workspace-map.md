@@ -48,7 +48,7 @@ Create new notes in `灵感库/` as `.md` files. Prefer this frontmatter for new
 ```yaml
 ---
 status: New
-category: Design
+category: inspiration
 type: Content
 related:
   - "[[相关文档]]"
@@ -58,7 +58,7 @@ created: YYYY-MM-DD
 
 Use exactly one `type`: `Content` for concrete authored content such as items, copy, or events, and
 `System` for game-rule and mechanic changes. Do not use `Inspiration` as a type. For problem notes,
-use `category: 问题Issue`. In `related`, prefer the unique note basename (for example `[[C]]`) and
+use `category: inspiration` plus `kind: Issue`. In `related`, prefer the unique note basename (for example `[[C]]`) and
 only include a path when duplicate basenames make the short link ambiguous.
 
 Use the body for summary, related systems, design questions, risks, conflicts, and decisions.

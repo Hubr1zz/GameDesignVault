@@ -1,0 +1,4 @@
+interface:
+  display_name: "通用设计文档工作流"
+  short_description: "建立并维护可移植的设计文档、灵感、术语、审查与元数据工作流"
+  default_prompt: "Use $manage-design-repository to set up and maintain this design-document repository."

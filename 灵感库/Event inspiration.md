@@ -1,4 +1,8 @@
-﻿# Event inspiration
+﻿---
+category: inspiration
+---
+
+# Event inspiration
 
 Idea Birthday: 2026年5月10日 02:42
 

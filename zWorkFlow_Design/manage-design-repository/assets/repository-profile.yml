@@ -1,0 +1,25 @@
+schema_version: 1
+project_name: "PROJECT_NAME"
+language: "PROJECT_LANGUAGE"
+source_of_truth: markdown
+paths:
+  formal_design: "design-docs"
+  inspirations: "inspirations"
+  terminology: "glossary"
+  examples: "design-examples"
+  references: "references"
+  workspace_map: ".design-workflow/workspace-map.md"
+  backlog: "BACKLOG.md"
+  edit_history: "EDIT_HISTORY.md"
+metadata:
+  inspiration_category: inspiration
+  formal_category: design
+  terminology_category: terminology
+  example_category: example
+  system_type: System
+  content_type: Content
+  issue_kind: Issue
+integrations:
+  obsidian: false
+  tolaria: false
+  external_spec_bridge: false

@@ -1,4 +1,8 @@
-﻿# Boss卡槽特殊机制：时钟与镜像
+﻿---
+category: inspiration
+---
+
+# Boss卡槽特殊机制：时钟与镜像
 
 Idea Birthday: 2026年5月28日 02:35
 

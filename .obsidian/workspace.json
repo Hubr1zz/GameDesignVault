@@ -4,22 +4,37 @@
     "type": "split",
     "children": [
       {
-        "id": "31cce4640adb1d5d",
+        "id": "d429b15001ac4217",
         "type": "tabs",
         "children": [
           {
-            "id": "b9afceb315484d71",
+            "id": "544d4fa22c881ab0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "术语词典/超时.md",
+                "file": "设计文档/通用/猎人 Hunter.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "超时"
+              "title": "猎人 Hunter"
+            }
+          },
+          {
+            "id": "908bd47226e7bd4c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "术语词典/技巧.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "技巧"
             }
           }
         ]
@@ -42,7 +57,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -54,7 +71,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"english\"]",
+                "query": "死亡判定",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -75,8 +92,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -96,9 +112,9 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "术语词典/超时.md",
+                "file": "设计文档/通用/事件 Events.md",
                 "collapseAll": true,
-                "extraContext": true,
+                "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
@@ -106,7 +122,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "超时 的反向链接列表"
+              "title": "事件 Events 的反向链接列表"
             }
           },
           {
@@ -115,12 +131,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "术语词典/超时.md",
+                "file": "设计文档/通用/猎人 Hunter.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "超时 的出链列表"
+              "title": "出链"
             }
           },
           {
@@ -158,17 +174,29 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "术语词典/超时.md",
+                "file": "设计文档/通用/事件 Events.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "超时 的大纲"
+              "title": "事件 Events 的大纲"
+            }
+          },
+          {
+            "id": "110cc8c084e8d8de",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "设计文档/通用/猎人 Hunter.md"
+              },
+              "icon": "lucide-info",
+              "title": "笔记属性"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -186,47 +214,48 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "b9afceb315484d71",
+  "active": "544d4fa22c881ab0",
   "lastOpenFiles": [
-    "DataView.base",
-    "术语词典.md",
-    "灵感库/狩猎阶段地图探索系统：地形卡与小地块.md",
-    "待办清单.md",
-    "README.md",
-    "INDEX.md",
-    "灵感库/部位卡进阶机制：堆叠与持续部位.md",
-    "黑板总览.canvas",
-    "灵感库/狩猎阶段地图生物卡组交互与条件击杀.md",
-    "灵感库/怪物行动卡带前摇后摇，超时机制设计.md",
-    "灵感库/矿脉：贪婪抽取资源机制.md",
-    "灵感库/护甲不是消耗品而是概率阻挡，精准意味着瞄准无护甲位置.md",
-    "修改历史.md",
-    "2026-06-26.md",
+    "设计文档/通用/死亡判定.md",
     "设计文档/通用/猎人 Hunter.md",
-    "术语词典/力量.md",
-    "术语词典/胆识.md",
-    "术语词典/升级配方.md",
-    "术语词典.base",
-    "术语词典/事件.md",
-    "设计文档/通用/事件 Events.md",
-    "设计文档/通用/关键词系统 Keyword system.md",
-    "Agent维护/workspace-map.md",
-    "Agent维护/SKILL.md",
+    "灵感库/集中攻击与低概率暴击判定.md",
+    "prototype/README.md",
+    "灵感库/Narrative inspiration.md",
+    "KDM&ATO学习/KDM-战斗技艺卡-效果与获取方式.md",
+    "KDM&ATO学习/KDM-故事事件-触发方式与奖励.md",
+    "AGENTS.md",
+    "zWorkFlow_Design/manage-design-repository/scripts/__pycache__/set_frontmatter_category.cpython-39.pyc",
+    "zWorkFlow_Design/manage-design-repository/scripts/__pycache__",
+    "zWorkFlow_Design/manage-design-repository/agents/openai.yaml",
+    "zWorkFlow_Design/manage-design-repository/agents",
+    "zWorkFlow_Design/SETUP.md",
+    "zWorkFlow_Design/manage-design-repository/scripts/set_frontmatter_category.py",
+    "zWorkFlow_Design/manage-design-repository/scripts",
+    "zWorkFlow_Design/manage-design-repository/assets/templates/term.md",
+    "zWorkFlow_Design/manage-design-repository/assets/templates/inspiration.md",
+    "zWorkFlow_Design/manage-design-repository/assets/templates/formal-design.md",
+    "zWorkFlow_Design/manage-design-repository/assets/templates",
+    "zWorkFlow_Design/manage-design-repository/assets/repository-profile.yml",
+    "zWorkFlow_Design/manage-design-repository/assets/AGENTS.fragment.md",
+    "zWorkFlow_Design/manage-design-repository/assets",
+    "zWorkFlow_Design/manage-design-repository/references/profile-schema.md",
+    "zWorkFlow_Design/manage-design-repository/references/metadata-schema.md",
+    "zWorkFlow_Design/manage-design-repository/references",
+    "zWorkFlow_Design/manage-design-repository/SKILL.md",
+    "system.md",
+    "README.md",
+    "灵感库/部位卡进阶机制：堆叠与持续部位.md",
+    "修改历史.md",
+    "术语词典.md",
+    "黑板总览.canvas",
+    "灵感库/对赌翻面：基于Boss行动的恢复条件.md",
+    "术语词典/敏捷.md",
+    "术语词典/技巧.md",
+    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/猎人行动卡 Action cards.md",
+    "灵感库/武器流派与握持类型差异化.md",
     "美术参考/butcher1.png",
     "美术参考/butcher.png",
     "美术参考/image1.png",
-    "术语词典/护甲.md",
-    "未命名.md",
-    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/猎人行动卡 Action cards.md",
-    "设计文档/战斗系统 Combat system.md",
-    "设计文档/通用",
-    "Agent维护",
-    "未命名",
-    "Workshop",
-    "设计文档/营地阶段 Settlement Phase",
-    "设计文档/决战阶段 Showdown Phase",
-    "设计文档/狩猎阶段 Hunt Phase",
-    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System",
     "未命名 1.canvas"
   ]
 }

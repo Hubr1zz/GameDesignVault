@@ -1,4 +1,8 @@
-﻿# UI/UX, Game flow
+﻿---
+category: inspiration
+---
+
+# UI/UX, Game flow
 
 Idea Birthday: 2026年5月10日 02:42
 

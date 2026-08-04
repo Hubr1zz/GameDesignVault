@@ -1,0 +1,7 @@
+interface:
+  display_name: "Document to OpenSpec Bridge"
+  short_description: "把正式文档差异转换为导入报告中的 Spec 提案"
+  default_prompt: "Use $document-change-to-openspec to turn completed formal design-document edits into an import report with Spec proposals, without creating an OpenSpec change or formal Spec."
+
+policy:
+  allow_implicit_invocation: false
