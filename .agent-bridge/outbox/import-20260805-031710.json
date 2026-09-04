@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "reportId": "import-20260805-031710",
+  "importType": "自动导入",
+  "status": "待审阅",
+  "createdAt": "2026-08-05T03:17:10+08:00",
+  "sourceRevision": "7c868f7b5ecc03817549d5b52daff11b1564b373",
+  "sourceDocuments": [
+    "设计文档/通用/猎人 Hunter.md"
+  ],
+  "summary": "正式化死亡判定存活事件池与生存卡机制：死亡判定改为展示死亡牌堆、翻面洗牌、抽牌翻开并按存活牌、生存卡或死亡牌结算；普通存活牌必定抽取存活事件；生存卡作为存活结果并直接执行自身事件内容。",
+  "fileFingerprints": {
+    "设计文档/通用/猎人 Hunter.md": "sha256:40ef4913f538acd2c930cef64baf361e8969acb63321624ea558fffc16c5968e"
+  },
+  "specProposals": [
+    {
+      "proposalId": "hunter-death-check-survival-events",
+      "title": "猎人死亡判定支持存活事件池与生存卡",
+      "capability": "hunter-death-check",
+      "requirementSummary": "猎人在部位血量归零后继续受伤时，应通过死亡牌堆抽牌进行死亡判定；普通存活牌使猎人生还并触发存活事件池事件，生存卡使猎人生还并执行卡上事件内容，死亡牌使猎人永久死亡。",
+      "scenarioSummaries": [
+        "初始死亡牌堆只有1张存活牌；判定时展示牌堆、翻面洗牌、抽1张并翻开。",
+        "抽到普通存活牌时，猎人生还，抽取并结算1个存活事件，然后向死亡牌堆加入1张死亡牌。",
+        "抽到生存卡时，猎人生还，执行该生存卡记载的事件内容，不再额外抽取普通存活事件，然后向死亡牌堆加入1张死亡牌。",
+        "抽到死亡牌时，猎人永久死亡。",
+        "生存卡、普通存活牌和死亡牌抽取前卡背一致且无优先级差异。"
+      ],
+      "sourceRefs": [
+        "设计文档/通用/猎人 Hunter.md#死亡判定",
+        "灵感库/死亡判定存活事件池与生存卡机制.md"
+      ],
+      "gaps": [
+        "存活事件池的基础事件内容尚未补全。"
+      ],
+      "adoptionStatus": "未采用",
+      "draftChangeId": ""
+    }
+  ]
+}

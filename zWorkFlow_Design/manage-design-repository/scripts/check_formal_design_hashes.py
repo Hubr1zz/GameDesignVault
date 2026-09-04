@@ -65,6 +65,78 @@ def write_json(path: Path, value: dict) -> None:
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def project_implementation_status(project_root: Path, current_design_hashes: dict[str, str]) -> list[dict]:
+    """Read project-side machine status and re-hash recorded code evidence."""
+    changes_root = project_root / "openspec" / "changes"
+    if not changes_root.exists():
+        return []
+    results = []
+    for review_path in sorted(changes_root.glob("*/change-review.json")):
+        review = json.loads(review_path.read_text(encoding="utf-8-sig"))
+        evidence = []
+        for item in review.get("verification", {}).get("codeEvidence", []):
+            code_path = project_root / item["displayPath"]
+            if not code_path.exists():
+                status = "missing"
+                current_hash = ""
+            else:
+                current_hash = sha256_bytes(code_path.read_bytes())
+                status = "valid" if current_hash == item.get("fileHash", "") else "modified"
+            evidence.append({
+                "path": item["displayPath"],
+                "status": status,
+                "storedHash": item.get("fileHash", ""),
+                "currentHash": current_hash,
+            })
+        statuses = {item["status"] for item in evidence}
+        if review.get("verification", {}).get("status") != "verified":
+            implementation_status = "not-verified"
+        elif "missing" in statuses:
+            implementation_status = "code-evidence-missing"
+        elif "modified" in statuses:
+            implementation_status = "code-evidence-stale"
+        else:
+            implementation_status = "verified-and-code-unchanged"
+        stored_design_hashes = (
+            review.get("sourceDocumentHashes")
+            or review.get("designSourceHashes")
+            or {}
+        )
+        if not stored_design_hashes:
+            design_source_status = "not-recorded"
+        elif stored_design_hashes == {
+            path: current_design_hashes[path]
+            for path in stored_design_hashes
+            if path in current_design_hashes
+        } and set(stored_design_hashes) == set(current_design_hashes):
+            design_source_status = "valid"
+        else:
+            design_source_status = "changed"
+        sync_ready = (
+            implementation_status == "verified-and-code-unchanged"
+            and design_source_status == "valid"
+            and review.get("specSyncStatus") == "synced"
+        )
+        results.append({
+            "changeId": review.get("changeId", review_path.parent.name),
+            "title": review.get("title", ""),
+            "implementationStatus": implementation_status,
+            "codeReadiness": review.get("codeReadiness", ""),
+            "verificationStatus": review.get("verification", {}).get("status", ""),
+            "specSyncStatus": review.get("specSyncStatus", ""),
+            "designSourceStatus": design_source_status,
+            "implementationSynced": sync_ready,
+            "syncReason": "ready" if sync_ready else (
+                "design-source-hash-not-recorded" if design_source_status == "not-recorded"
+                else "design-source-changed-or-missing" if design_source_status == "changed"
+                else "code-evidence-or-spec-sync-incomplete"
+            ),
+            "codeEvidence": evidence,
+            "source": str(review_path.relative_to(project_root)).replace("\\", "/"),
+        })
+    return results
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline", type=Path, default=Path(".agent-bridge/design-hash-baseline.json"))
@@ -78,6 +150,16 @@ def main() -> int:
         "--record-current",
         action="store_true",
         help="Record the current working tree as the new baseline after checking.",
+    )
+    parser.add_argument(
+        "--project-root",
+        type=Path,
+        help="Also inspect project OpenSpec change reviews and re-hash their code evidence.",
+    )
+    parser.add_argument(
+        "--project-report",
+        type=Path,
+        default=Path(".agent-bridge/implementation-sync-report.json"),
     )
     args = parser.parse_args()
     root = repo_root()
@@ -113,6 +195,17 @@ def main() -> int:
         "hasChanges": bool(changed or added or removed),
     }
     write_json(report_path, report)
+
+    if args.project_root:
+        project_root = args.project_root.resolve()
+        project_report = {
+            "schemaVersion": 1,
+            "checkedAt": utc_now(),
+            "projectRoot": str(project_root),
+            "designReport": str(report_path.relative_to(root)).replace("\\", "/"),
+            "changes": project_implementation_status(project_root, after),
+        }
+        write_json((root / args.project_report).resolve(), project_report)
 
     if args.record_current:
         write_json(

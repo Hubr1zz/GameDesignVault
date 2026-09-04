@@ -1,8 +1,10 @@
 # Knowledge 卡效果索引
 
-> 数据源：[List of Knowledges](https://kingdomdeath.fandom.com/wiki/List_of_Knowledges)。本表是学习用摘要，保留 KDM 英文术语，避免改写成可能误导的完整规则译文。
+> 数据源：[List of Knowledges](https://kingdomdeath.fandom.com/wiki/List_of_Knowledges)。本表是检索底表，保留英文卡名和关键术语；系统词汇与完整升级流程见 [[术语与流程]]。
 
-共整理 181 张/行 Knowledge 记录。Lumi 是在 Forum 学习时的成本；来源/哲学 由 traits 反推，可能包含哲学、怪物、Wanderer 或特殊来源。
+共整理 181 张/行 Knowledge 记录。同名不同等级分别占一行，因此“181 行”不等于 181 个独立知识系列。`Lumi` 列是从 Forum 学习该卡的成本；`来源 / 哲学` 由卡牌 traits 归类，可能是哲学、怪物、Wanderer 或特殊来源。
+
+快速读表：`Theory` 表示该等级暂时没有主动效果；`Advance X` 表示填满观察后替换为 X；`Epiphany X` 表示额外发现 X；`dangerous observation` 填满后执行“升级 / 后续”栏的危险后果。若规则摘要出现未翻译的专属关键词，先在 [[术语与流程]] 查询；仍无定义时以链接中的卡页和实体规则为准。
 
 | 卡名 | 等级 | Lumi | 来源 / 哲学 | 效果 / 规则摘要 | 观察条件 | 观察格 | 升级 / 后续 | 来源 |
 |---|---:|---:|---|---|---|---:|---|---|

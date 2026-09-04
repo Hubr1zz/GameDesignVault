@@ -1,0 +1,4 @@
+interface:
+  display_name: "KDM DLC Research"
+  short_description: "研究并提炼KDM扩展的机制、卡牌来源、触发条件与具体效果"
+  default_prompt: "Use $kdm-dlc-research to research and summarize a Kingdom Death: Monster DLC in Chinese."

@@ -4,37 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "d429b15001ac4217",
+        "id": "51a7318e3361b8ca",
         "type": "tabs",
         "children": [
           {
-            "id": "544d4fa22c881ab0",
+            "id": "609dba6c83377c60",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "设计文档/通用/猎人 Hunter.md",
+                "file": "灵感库/行动卡槽位置排列机制.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "猎人 Hunter"
-            }
-          },
-          {
-            "id": "908bd47226e7bd4c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "术语词典/技巧.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "技巧"
+              "title": "行动卡槽位置排列机制"
             }
           }
         ]
@@ -189,7 +174,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "设计文档/通用/猎人 Hunter.md"
+                "file": "灵感库/行动卡槽位置排列机制.md"
               },
               "icon": "lucide-info",
               "title": "笔记属性"
@@ -214,48 +199,54 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "544d4fa22c881ab0",
+  "active": "609dba6c83377c60",
   "lastOpenFiles": [
-    "设计文档/通用/死亡判定.md",
-    "设计文档/通用/猎人 Hunter.md",
-    "灵感库/集中攻击与低概率暴击判定.md",
-    "prototype/README.md",
-    "灵感库/Narrative inspiration.md",
-    "KDM&ATO学习/KDM-战斗技艺卡-效果与获取方式.md",
-    "KDM&ATO学习/KDM-故事事件-触发方式与奖励.md",
-    "AGENTS.md",
-    "zWorkFlow_Design/manage-design-repository/scripts/__pycache__/set_frontmatter_category.cpython-39.pyc",
-    "zWorkFlow_Design/manage-design-repository/scripts/__pycache__",
-    "zWorkFlow_Design/manage-design-repository/agents/openai.yaml",
-    "zWorkFlow_Design/manage-design-repository/agents",
-    "zWorkFlow_Design/SETUP.md",
-    "zWorkFlow_Design/manage-design-repository/scripts/set_frontmatter_category.py",
-    "zWorkFlow_Design/manage-design-repository/scripts",
-    "zWorkFlow_Design/manage-design-repository/assets/templates/term.md",
-    "zWorkFlow_Design/manage-design-repository/assets/templates/inspiration.md",
-    "zWorkFlow_Design/manage-design-repository/assets/templates/formal-design.md",
-    "zWorkFlow_Design/manage-design-repository/assets/templates",
-    "zWorkFlow_Design/manage-design-repository/assets/repository-profile.yml",
-    "zWorkFlow_Design/manage-design-repository/assets/AGENTS.fragment.md",
-    "zWorkFlow_Design/manage-design-repository/assets",
-    "zWorkFlow_Design/manage-design-repository/references/profile-schema.md",
-    "zWorkFlow_Design/manage-design-repository/references/metadata-schema.md",
-    "zWorkFlow_Design/manage-design-repository/references",
-    "zWorkFlow_Design/manage-design-repository/SKILL.md",
-    "system.md",
-    "README.md",
-    "灵感库/部位卡进阶机制：堆叠与持续部位.md",
-    "修改历史.md",
-    "术语词典.md",
-    "黑板总览.canvas",
-    "灵感库/对赌翻面：基于Boss行动的恢复条件.md",
-    "术语词典/敏捷.md",
+    "DataView.base",
+    "灵感库/思维区系统：战斗资源卡与容量机制.md",
+    "灵感库/死亡判定存活事件池与生存卡机制.md",
     "术语词典/技巧.md",
-    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/猎人行动卡 Action cards.md",
-    "灵感库/武器流派与握持类型差异化.md",
+    "术语词典/敏捷.md",
+    "灵感库/Boss移动与索敌：操控偏移与命运值.md",
+    "灵感库/().md",
+    "灵感库/启动型行动卡：高门槛持久增益与基础卡联动.md",
+    "灵感库/角色卡牌交互机制：共鸣、传递与牺牲.md",
+    "灵感库/怪物行动卡带前摇后摇，超时机制设计.md",
+    "灵感库/对赌翻面：基于Boss行动的恢复条件.md",
+    "灵感库/部位卡进阶机制：堆叠与持续部位.md",
+    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/怪物 Monster.md",
+    "KDMDLC/Gambler's Chest Expansion - Philosophy System/术语与流程.md",
+    "KDMDLC/Gambler's Chest Expansion - Philosophy System/总览.md",
+    "KDMDLC/Gambler's Chest Expansion - Philosophy System/扩展内容总览.md",
+    "KDMDLC/Honeycomb Weaver Expansion/总览.md",
+    "KDMDLC/First Hero Expansion/总览.md",
+    "KDMDLC/Death Armor Expansion/总览.md",
+    "KDMDLC/Black Knight Expansion/总览.md",
+    "KDMDLC/Black Knight Expansion/卡牌与事件.md",
+    "KDMDLC/Black Knight Expansion/怪物机制.md",
+    "美术参考/剪贴板图片_2026-08-20_16-52-36-536.png",
+    "美术参考/剪贴板图片_2026-08-20_16-51-30-293.png",
+    "KDMDLC/Abyssal Woods Expansion/总览.md",
+    "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/战斗系统 Combat system.md",
+    "prototype-3d/dist/assets/rapier-Cp28jMjo.js",
+    "prototype-3d/dist/assets/DiceTray-D2Au7isD.js",
+    "prototype-3d/dist/assets/index-DkJUPr0t.js",
+    "prototype-3d/dist/assets/rapier-B2XMixS9.js",
+    "prototype-3d/dist/assets/DiceTray-C9gadS89.js",
+    "prototype-3d/dist/assets/index-CF0uAjBe.js",
+    "prototype-3d/src/presentation/headspaceTransform.test.ts",
+    "prototype-3d/src/presentation/headspaceTransform.ts",
+    "设计文档/营地阶段 Settlement Phase/Invention发明.md",
+    "设计文档/营地阶段 Settlement Phase/工坊Workshop.md",
+    "prototype-3d/dist/assets/index-DJoRXhaw.css",
+    "prototype-3d/node_modules/playwright-core/lib/vite/dashboard/assets/safari-na3_-uQk.svg",
+    "prototype-3d/node_modules/playwright-core/lib/vite/traceViewer/playwright-logo.svg",
+    "prototype-3d/node_modules/playwright-core/lib/vite/recorder/playwright-logo.svg",
+    "prototype-3d/node_modules/playwright-core/lib/vite/dashboard/playwright-logo.svg",
+    "prototype-3d/node_modules/playwright-core/lib/vite/dashboard/assets/firefox-nightly-Cp5nfeDT.svg",
+    "prototype-3d/node_modules/playwright-core/lib/tools/dashboard/appIcon.png",
+    "prototype-3d/node_modules/playwright-core/lib/server/chromium/appIcon.png",
+    "黑板总览.canvas",
     "美术参考/butcher1.png",
-    "美术参考/butcher.png",
-    "美术参考/image1.png",
     "未命名 1.canvas"
   ]
 }

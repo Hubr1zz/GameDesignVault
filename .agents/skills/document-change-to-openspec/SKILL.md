@@ -22,6 +22,8 @@ description: 当 GameDesignVault 的 `设计文档/` 正式设计内容发生修
    - 纯问答、普通只读检索、记录灵感、记录问题、术语词典维护、内容设计案例维护、Obsidian 配置、Agent 工作流/skill 规则更新、待办清单或修改历史维护，不触发本 skill。
 2. 读取 `.agent-bridge/project-sync.json`，确认 `enabled=true`、`mode=proposal-only`。
 3. 确定导入范围：
+   - 先运行 `zWorkFlow_Design/manage-design-repository/scripts/check_formal_design_hashes.py`，传入 `.agent-bridge/design-hash-baseline.json` 与 `projectRoot`；以 `.agent-bridge/design-hash-report.json` 的 `changed` / `added` / `removed` 作为文件级变更判定，不逐页读取未变化的正式文档。
+   - 同时读取 `.agent-bridge/implementation-sync-report.json`；项目 Change 的 `implementationStatus`、代码证据哈希和 `specSyncStatus` 由代码计算，Agent 只在状态异常或需要理解行为语义时读取对应代码/Spec。
    - 自动导入：检测本轮 Agent 实际修改且路径位于 `设计文档/` 的文件；Git 可用时检查 `lastProcessedRevision..HEAD` 与当前 `git status --short`。首次启用在任务开始记录当前 revision，不把启用前旧改动自动导入。
    - 手动导入：只读取用户明确指定的 `设计文档/` 正式文档，不要求这些文件在本轮产生差异。
    - `设计文档/` 之外的文件不得进入导入候选；`设计文档/` 内纯格式整理、链接修复或无行为变化的文字调整也不产生 Spec 提案。
@@ -33,6 +35,7 @@ description: 当 GameDesignVault 的 `设计文档/` 正式设计内容发生修
 6. 自动同步不得读取或写入目标项目的 `openspec/changes/`、`openspec/specs/`，不得运行任何 `openspec` 命令，也不得调用 OpenSpec proposal/update/apply/sync/archive skill。
 7. 未确定设计只写入提案的 gap/依赖，不擅自补齐。
 8. 同一文件指纹不重复生成报告；同一轮正式文档变更尽量合并为一份导入报告。
+   - 文件指纹由检查器计算；Agent 不以逐页阅读代替哈希判定。
 9. 更新控制文件的 `status`、`pendingReport`、`lastEvent`、`lastProcessedAt`、`lastProcessedRevision`、`updatedAt`。
 10. 报告导入报告路径和 Spec 提案数量，等待用户在导入报告面板处理。
 

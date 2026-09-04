@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-08-03T13:31:44+00:00",
+  "checkedAt": "2026-08-04T19:16:54+00:00",
   "baseline": ".agent-bridge/design-hash-baseline.json",
   "source": {
     "type": "git",
@@ -18,8 +18,7 @@
   ],
   "added": [
     "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/战斗系统 Combat system.md",
-    "设计文档/营地阶段 Settlement Phase/工坊Workshop.md",
-    "设计文档/通用/死亡判定.md"
+    "设计文档/营地阶段 Settlement Phase/工坊Workshop.md"
   ],
   "removed": [
     "设计文档/决战阶段 Showdown Phase/战斗系统 Combat System/战斗系统 Combat system (索引).md",

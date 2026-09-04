@@ -1,15 +1,15 @@
 ﻿{
-    "schemaVersion": 1,
-    "enabled": false,
+    "schemaVersion": 2,
+    "enabled": true,
     "mode": "proposal-only",
-    "projectRoot": "D:\\UnityProjects\\TEngine\\TEngine\\UnityProject",
-    "status": "disabled",
-    "pendingChange": "",
-    "lastEvent": "",
-    "enabledAt": "2026-07-31T14:51:09.5590768+08:00",
-    "lastProcessedAt": "",
-    "lastProcessedRevision": "",
+    "projectRoot": "D:\\UnityProjects\\My project",
+    "status": "report-pending",
+    "pendingReport": ".agent-bridge/outbox/import-20260805-031710.json",
+    "lastEvent": "import-report-20260805-031710",
+    "enabledAt": "2026-08-04T13:22:58+08:00",
+    "lastProcessedAt": "2026-08-05T03:17:10+08:00",
+    "lastProcessedRevision": "7c868f7b5ecc03817549d5b52daff11b1564b373",
     "lastError": "",
-    "updatedBy": "Hubr1zz",
-    "updatedAt": "2026-07-31T14:51:10.2153745+08:00"
+    "updatedBy": "Codex",
+    "updatedAt": "2026-08-05T03:17:10+08:00"
 }
