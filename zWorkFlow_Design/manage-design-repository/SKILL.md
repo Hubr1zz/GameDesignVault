@@ -12,9 +12,10 @@ Treat Markdown files in the target repository as the durable source of truth. Ke
 1. Locate the repository root and read `.design-workflow/profile.yml` completely.
 2. If the profile is missing, stop document mutations and follow the package `SETUP.md`.
 3. Resolve every configured path relative to the repository root. Never embed an absolute path in repository files.
-4. Read the configured workspace map when structural context is needed.
-5. Before editing, read the configured backlog and search relevant Markdown with the fastest available text search.
-6. Before broad edits, inspect version-control status and preserve unrelated user changes.
+4. Read the configured project-rules file completely before acting; it contains target-specific constraints and integration boundaries.
+5. Read the configured workspace map when structural context is needed.
+6. Before editing, read the configured backlog and search relevant Markdown with the fastest available text search.
+7. Before broad edits, inspect version-control status and preserve unrelated user changes.
 
 ## Use one portable data model
 

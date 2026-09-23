@@ -14,6 +14,7 @@ paths:
   examples: "design-examples"
   references: "references"
   workspace_map: ".design-workflow/workspace-map.md"
+  project_rules: ".design-workflow/project-rules.md"
   backlog: "BACKLOG.md"
   edit_history: "EDIT_HISTORY.md"
 metadata:
@@ -33,6 +34,7 @@ integrations:
 ## Setup rules
 
 - Inspect existing directories before choosing mappings.
+- Generate `.design-workflow/project-rules.md` for target-specific constraints and integration policies.
 - Prefer existing user terminology and structure over creating duplicate folders.
 - Ask only when two plausible mappings would materially change behavior.
 - Create missing support files only after the mapping is clear.

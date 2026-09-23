@@ -1,24 +1,12 @@
----
-name: gamedesignvault-manager
-description: >
-  管理本地 GameDesignVault Markdown/Obsidian 游戏设计库，用于项目 Hunting in Darkness。
-  当用户要求阅读、修改、整理或创建本地设计文档；记录灵感、问题、术语；维护文件夹、
-  Obsidian wiki 链接、YAML frontmatter；处理本地、导出或远程内容冲突；维护
-  `待办清单.md`；或在 `修改历史.md` 中总结项目内容改动时使用本 skill。
-  触发语包括 "new idea/inspiration", "record this", "add term/terminology",
-  "reorganize docs", "update the design doc"，以及中文短语“我有新的灵感”、
-  “我想到了”、“有个新想法”、“我有个想法”、“修改XXX机制”、“新机制”、
-  “我们讨论一下”、“记录一下”、“记录问题”。当用户提出设计内容时，在更新正式
-  设计文档前，必须先在对话中完成设计完整性审查与实现清晰度审查。
----
+# GameDesignVault 项目规则
 
-# GameDesignVault Markdown Manager
+本仓库是独立文档维护层，不依赖游戏代码项目。
 
-本 skill 用于维护本地 `GameDesignVault` Markdown 库。该仓库中的 Markdown 文件是唯一可信来源；不要把 Notion 数据库、导出包或远程副本当作默认权威来源，除非用户明确要求比较或导入。
+本文件用于维护本地 `GameDesignVault` Markdown 库的项目专属规则。该仓库中的 Markdown 文件是唯一可信来源；不要把 Notion 数据库、导出包或远程副本当作默认权威来源，除非用户明确要求比较或导入。
 
 ## 开始前
 
-1. 先读 `Agent维护/workspace-map.md`，了解目录职责。
+1. 先读 `.design-workflow/workspace-map.md`，了解目录职责。
 2. 编辑前读 `待办清单.md`，避免重复记录已知后续事项。
 3. 用 `rg --files` 查文件，用 `rg` 搜内容。
 4. 以 Obsidian wiki 链接（如 `[[Page]]`、`[[folder/Page|label]]`）和文件夹结构维护文档图谱；YAML frontmatter 只作为轻量元数据。
@@ -195,7 +183,7 @@ description: >
 4. 使用当前日期。
 5. 密切相关的编辑可以合并成一行。
 6. 不记录计划、失败尝试或纯对话审查。
-7. 不记录仅维护 agent 工作流的变更，例如 `Agent维护/` 或 skill 规则更新。
+7. 不记录仅维护 agent 工作流的变更，例如 `.design-workflow/` 或 skill 规则更新。
 
 推荐 `分类`：
 

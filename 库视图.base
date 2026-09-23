@@ -1,6 +1,6 @@
 views:
   - type: table
-    name: 表格
+    name: 灵感库
     filters:
       and:
         - file.inFolder("灵感库")
@@ -24,11 +24,3 @@ views:
       file.name: 339
       note.type: 214
       note.category: 159
-  - type: cards
-    name: 术语词典
-    filters:
-      and:
-        - file.inFolder("术语词典")
-    cardSize: 160
-    image: note.created
-    imageAspectRatio: 0.5

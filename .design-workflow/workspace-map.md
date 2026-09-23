@@ -10,11 +10,10 @@ compare or import them.
 | Path | Responsibility |
 |---|---|
 | `README.md` | Human-facing vault overview and quick navigation. |
-| `INDEX.md` | Lightweight top-level index or Dataview entry point. |
 | `修改历史.md` | Chronological change notes for major design/vault updates. |
 | `待办清单.md` | Shared backlog for not-started documentation and design tasks. |
-| `术语词典.md` | Aggregate terminology index. Prefer individual pages in `术语词典/` for definitions. |
-| `灵感列表.base` | Obsidian Bases view for listing notes in `灵感库/`. |
+| `术语词典.md` | Terminology index, embedded cards, and incomplete-location check. Prefer individual pages in `术语词典/` for definitions. |
+| `库视图.base` | Obsidian Bases view for listing notes in `灵感库/`. |
 
 ## Main Directories
 
@@ -25,7 +24,8 @@ compare or import them.
 | `术语词典/` | One Markdown page per stable game term. Term pages define meaning and link back to primary design locations. |
 | `内容设计案例/` | Concrete content examples, such as monsters, events, narrative samples, map objects, and resource point cases. |
 | `美术参考/` | Image references and visual material used by design notes. |
-| `Agent维护/` | Agent-facing maintenance files: the project skill and workspace map. |
+| `.design-workflow/` | Project-specific workflow configuration, workspace map, and maintenance rules. |
+| `zWorkFlow_Design/` | Portable workflow package used to interpret `.design-workflow/`. |
 | `.obsidian/` | Obsidian configuration. Do not edit unless the user asks for vault/app configuration changes. |
 
 ## Design Documents

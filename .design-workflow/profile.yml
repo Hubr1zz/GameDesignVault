@@ -1,17 +1,17 @@
 schema_version: 1
-project_name: "PROJECT_NAME"
-language: "PROJECT_LANGUAGE"
+project_name: "Hunting in Darkness"
+language: "zh-CN Markdown/Obsidian"
 source_of_truth: markdown
 paths:
-  formal_design: "design-docs"
-  inspirations: "inspirations"
-  terminology: "glossary"
-  examples: "design-examples"
-  references: "references"
+  formal_design: "设计文档"
+  inspirations: "灵感库"
+  terminology: "术语词典"
+  examples: "内容设计案例"
+  references: "美术参考"
   workspace_map: ".design-workflow/workspace-map.md"
   project_rules: ".design-workflow/project-rules.md"
-  backlog: "BACKLOG.md"
-  edit_history: "EDIT_HISTORY.md"
+  backlog: "待办清单.md"
+  edit_history: "修改历史.md"
 metadata:
   inspiration_category: inspiration
   formal_category: design
@@ -21,6 +21,6 @@ metadata:
   content_type: Content
   issue_kind: Issue
 integrations:
-  obsidian: false
+  obsidian: true
   tolaria: false
-  external_spec_bridge: false
+  external_spec_bridge: true
