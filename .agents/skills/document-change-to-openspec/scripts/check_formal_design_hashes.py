@@ -24,7 +24,12 @@ def sha256_bytes(data: bytes) -> str:
 
 
 def repo_root() -> Path:
-    return Path(__file__).resolve().parents[3]
+    # Walk up to the repository root so the script survives being moved.
+    here = Path(__file__).resolve()
+    for parent in here.parents:
+        if (parent / ".design-workflow" / "profile.yml").is_file() or (parent / ".git").exists():
+            return parent
+    raise SystemExit("repository root not found above " + str(here))
 
 
 def current_files(root: Path) -> dict[str, str]:
