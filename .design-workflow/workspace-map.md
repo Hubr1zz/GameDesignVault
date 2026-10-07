@@ -1,119 +1,60 @@
-# Workspace Map - GameDesignVault
+# 工作区地图
 
-This vault is the authoritative source of truth for the "Hunting in Darkness" game design project.
-Use the local Markdown files, folder structure, wiki links, and optional YAML frontmatter. Do not
-treat Notion databases, exports, or remote copies as authoritative unless the user explicitly says to
-compare or import them.
+各目录和根文件的职责。字段定义见 `.design-workflow/profile.yml`，项目约束见 `.design-workflow/project-rules.md`。
 
-## Root Files
+## 根文件
 
-| Path | Responsibility |
+| 路径 | 职责 |
 |---|---|
-| `README.md` | Human-facing vault overview and quick navigation. |
-| `修改历史.md` | Chronological change notes for major design/vault updates. |
-| `待办清单.md` | Shared backlog for not-started documentation and design tasks. |
-| `术语词典.md` | Terminology index, embedded cards, and incomplete-location check. Prefer individual pages in `术语词典/` for definitions. |
-| `库视图.base` | Obsidian Bases view for listing notes in `灵感库/`. |
+| `README.md` | 给人看的入口和导航 |
+| `AGENTS.md` | 给 agent 的入口，只指向工作流 |
+| `待办清单.md` | 已识别但尚未开始的文档与设计任务 |
+| `修改历史.md` | 已完成的内容修改，按日期记录 |
+| `术语词典.md` | 术语索引页，查询 `术语词典/` 下的词条 |
+| `库视图.base` | 灵感库的表格视图 |
 
-## Main Directories
+## 文档目录
 
-| Path | Responsibility |
+| 路径 | 类 | 职责 |
+|---|---|---|
+| `设计文档/` | Design | 正式设计：已接受的系统规则、阶段流程、世界观 |
+| `灵感库/` | Inspiration、Issue | 新想法和待解决问题的收件箱。新想法默认先进这里 |
+| `术语词典/` | Term | 每个稳定术语一页，指回主要定义文档 |
+| `内容设计案例/` | Example | 检验或演示正式系统的具体内容：怪物、事件、地图物件、工坊 |
+| `参考资料/` | Research | 外部资料的研究笔记。不是本项目的规则 |
+| `美术参考/` | Art | 参考图、AI 美术探索及其生成记录 |
+
+## 正式设计的分区
+
+| 路径 | 内容 |
 |---|---|
-| `设计文档/` | Formal game design documents: core systems, phase rules, world setting, shared mechanics, and accepted design. |
-| `灵感库/` | Inbox and working library for ideas, mechanics, issues, UX notes, art/design inspiration, and unresolved questions. New ideas go here first. |
-| `术语词典/` | One Markdown page per stable game term. Term pages define meaning and link back to primary design locations. |
-| `内容设计案例/` | Concrete content examples, such as monsters, events, narrative samples, map objects, and resource point cases. |
-| `美术参考/` | Image references and visual material used by design notes. |
-| `.design-workflow/` | Project-specific workflow configuration, workspace map, and maintenance rules. |
-| `.agents/skills/` | Agent skills: the portable workflow package and project-specific skills. |
-| `.obsidian/` | Obsidian configuration. Do not edit unless the user asks for vault/app configuration changes. |
+| `设计文档/Design Essentials & Challenges.md` | 设计支柱、风险、约束与挑战 |
+| `设计文档/World settings 世界观设定.md` | 世界观与叙事背景 |
+| `设计文档/通用/` | 跨阶段系统：猎人、事件、物品、关键词 |
+| `设计文档/决战阶段 Showdown Phase/` | 战斗系统、怪物、猎人行动卡 |
+| `设计文档/狩猎阶段 Hunt Phase/` | 地图探索 |
+| `设计文档/营地阶段 Settlement Phase/` | 时间线、发明、工坊 |
 
-## Design Documents
+## 参考资料的分区
 
-`设计文档/` contains accepted or semi-formal design material. Current major areas include:
-
-| Path | Responsibility |
+| 路径 | 内容 |
 |---|---|
-| `设计文档/Design Essentials & Challenges.md` | High-level design pillars, risks, constraints, and challenges. |
-| `设计文档/World settings 世界观设定.md` | World setting and narrative background. |
-| `设计文档/通用/` | Shared systems such as hunter, events, items, and keyword system. |
-| `设计文档/决战阶段 Showdown Phase/` | Showdown/combat phase documents and combat-system rules. |
-| `设计文档/狩猎阶段 Hunt Phase/` | Hunt phase, map exploration, and related travel/exploration rules. |
-| `设计文档/营地阶段 Settlement Phase/` | Settlement phase systems, timeline, invention, workshop, and workshop subpages. |
+| `参考资料/KDM/` | Kingdom Death: Monster 核心规则的学习笔记 |
+| `参考资料/KDM/DLC/` | KDM 扩展资料，每个扩展一个目录，入口是 `参考资料/KDM/DLC/00-DLC总索引.md` |
 
-## Inspiration Library
+## 不受工作流管理的目录
 
-Create new notes in `灵感库/` as `.md` files. Prefer this frontmatter for new notes:
-
-```yaml
----
-status: New
-category: inspiration
-type: Content
-related:
-  - "[[相关文档]]"
-created: YYYY-MM-DD
----
-```
-
-Use exactly one `type`: `Content` for concrete authored content such as items, copy, or events, and
-`System` for game-rule and mechanic changes. Do not use `Inspiration` as a type. For problem notes,
-use `category: inspiration` plus `kind: Issue`. In `related`, prefer the unique note basename (for example `[[C]]`) and
-only include a path when duplicate basenames make the short link ambiguous.
-
-Use the body for summary, related systems, design questions, risks, conflicts, and decisions.
-
-## Terminology Dictionary
-
-Create one page per term in `术语词典/`. Preferred structure:
-
-```yaml
----
-中文: "术语"
-english: ""
-location: "[[设计文档/主要定义位置]]"
-aliases: []
----
-
-# 术语
-
-Definition...
-```
-
-Rules:
-
-- Link terms from design docs and inspirations with `[[术语]]` or `[[术语|显示文本]]`.
-- The `location` field points to the primary definition or main usage document.
-
-## Content Design Examples
-
-`内容设计案例/` stores examples that test or demonstrate the formal systems:
-
-| Example Type | Typical Location |
+| 路径 | 内容 |
 |---|---|
-| Event examples | `内容设计案例/事件.md` and related pages |
-| Monster examples | `内容设计案例/怪物 -例子.md` |
-| Map object examples | `内容设计案例/地图物件 -例子Example Map Objects.md` |
-| Narrative examples | `内容设计案例/叙事.md` |
-| Resource point examples | `内容设计案例/石森林资源点案例.md` |
+| `prototypes/2d/` | 浏览器 2D 原型 |
+| `prototypes/3d/` | 浏览器 3D 战斗纵切片，有独立的 npm 工具链 |
 
-When an example implies a rule change, record that as an inspiration or update the relevant design
-doc only with user approval.
+## 配置与工具
 
-## Hierarchy And Linking
-
-Use these mechanisms instead of Notion relations:
-
-- folders for broad domains;
-- Markdown headings for local structure;
-- Obsidian wiki links for cross-document references;
-- optional YAML frontmatter for lightweight metadata.
-
-## Conflict Handling
-
-When local, exported, remote, or user-provided versions disagree:
-
-1. Pause before writing.
-2. List the differences by source/path.
-3. Ask the user which version to keep or how to merge.
-4. Apply the chosen version after confirmation.
+| 路径 | 职责 |
+|---|---|
+| `.design-workflow/` | 本项目的工作流配置：profile、项目规则、本地图、模板 |
+| `.agents/skills/` | agent skill：通用工作流包和项目专用 skill |
+| `.claude/` | Claude Code 的入口和 skill 包装 |
+| `.obsidian/` | Obsidian 配置。除非用户要求改配置，否则不编辑 |
+| `.agent-bridge/` | 规格桥接的本机配置与运行状态，不进版本库 |

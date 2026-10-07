@@ -1,13 +1,20 @@
 # Project Rules
 
-This file is generated into `.design-workflow/project-rules.md` during setup.
-It stores constraints that belong to the target repository rather than to the portable workflow package.
+Constraints that belong to this repository only. Reusable workflow behavior stays in the
+`manage-design-repository` skill, and data definitions stay in `profile.yml`. Do not repeat either here.
 
-## Repository-specific constraints
+## Language and naming
 
-Record project identity, naming rules, editor conventions, integration policies, and other constraints here.
-Keep reusable workflow behavior in `.agents/skills/manage-design-repository/SKILL.md` instead.
+Record the note language, title conventions and file-name conventions.
 
-## Optional integrations
+## Edit-history categories
 
-Document any enabled bridge or editor integration here, including its safety boundaries.
+List the categories used in the edit history and as commit prefixes.
+
+## Tool views
+
+List the saved views and query blocks that depend on frontmatter keys, with the keys each one reads.
+
+## Integrations
+
+Describe every bridge enabled in the profile: what triggers it and what it must never do.

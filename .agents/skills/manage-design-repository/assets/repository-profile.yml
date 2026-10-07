@@ -1,26 +1,71 @@
-schema_version: 1
+schema_version: 2
 project_name: "PROJECT_NAME"
 language: "PROJECT_LANGUAGE"
-source_of_truth: markdown
-paths:
-  formal_design: "design-docs"
-  inspirations: "inspirations"
-  terminology: "glossary"
-  examples: "design-examples"
-  references: "references"
-  workspace_map: ".design-workflow/workspace-map.md"
-  project_rules: ".design-workflow/project-rules.md"
+
+records:
   backlog: "BACKLOG.md"
   edit_history: "EDIT_HISTORY.md"
-metadata:
-  inspiration_category: inspiration
-  formal_category: design
-  terminology_category: terminology
-  example_category: example
-  system_type: System
-  content_type: Content
-  issue_kind: Issue
+  workspace_map: ".design-workflow/workspace-map.md"
+  project_rules: ".design-workflow/project-rules.md"
+  templates: ".design-workflow/templates"
+  navigation: ["README.md", ".design-workflow/workspace-map.md"]
+
+classes:
+  design:
+    dir: "design-docs"
+    type: Design
+    required: []
+  inspiration:
+    dir: "inspirations"
+    type: Inspiration
+    required: [status, scope, related, created]
+    optional: [updated]
+    status: [New, Adopted, Rejected]
+  issue:
+    dir: "inspirations"
+    type: Issue
+    required: [status, related, created]
+    optional: [updated]
+    status: [Open, Resolved, Dropped]
+  term:
+    dir: "glossary"
+    type: Term
+    required: [location]
+  example:
+    dir: "design-examples"
+    type: Example
+    required: [status, related]
+    status: [Stub, Draft, Done]
+  research:
+    dir: "research"
+    type: Research
+    required: []
+
+fields:
+  scope:
+    values: [System, Content]
+  related:
+    kind: links
+  location:
+    kind: link
+  created:
+    kind: date
+  updated:
+    kind: date
+
+ignore:
+  keys: [aliases, tags]
+  dirs: []
+
+images:
+  dirs: ["references"]
+  formats: [webp, jpg, jpeg, svg, gif]
+  max_edge: 2560
+  max_kb: 1500
+  quality: 90
+  bad_names: ['^[0-9A-Fa-f]{32}$', '^image[0-9]*$', '^Pasted image', '^Screenshot']
+
+adapters: []
+
 integrations:
-  obsidian: false
-  tolaria: false
   external_spec_bridge: false

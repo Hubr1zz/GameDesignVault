@@ -6,8 +6,8 @@ related: []
 created: YYYY-MM-DD
 ---
 
-# TITLE
+# 标题
 
-## Summary
+## 摘要
 
-## Open questions
+## 当前未定问题

@@ -1,26 +1,87 @@
-schema_version: 1
+schema_version: 2
 project_name: "Hunting in Darkness"
-language: "zh-CN Markdown/Obsidian"
-source_of_truth: markdown
-paths:
-  formal_design: "设计文档"
-  inspirations: "灵感库"
-  terminology: "术语词典"
-  examples: "内容设计案例"
-  references: "美术参考"
-  workspace_map: ".design-workflow/workspace-map.md"
-  project_rules: ".design-workflow/project-rules.md"
+language: "zh-CN"
+
+# Shared records and project-layer files.
+records:
   backlog: "待办清单.md"
   edit_history: "修改历史.md"
-metadata:
-  inspiration_category: inspiration
-  formal_category: design
-  terminology_category: terminology
-  example_category: example
-  system_type: System
-  content_type: Content
-  issue_kind: Issue
+  workspace_map: ".design-workflow/workspace-map.md"
+  project_rules: ".design-workflow/project-rules.md"
+  templates: ".design-workflow/templates"
+  # Files whose backticked paths must exist.
+  navigation: ["README.md", ".design-workflow/workspace-map.md"]
+
+# One entry per document class. A note's `type` must match the folder it lives in.
+classes:
+  design:
+    dir: "设计文档"
+    type: Design
+    required: []
+  inspiration:
+    dir: "灵感库"
+    type: Inspiration
+    required: [status, scope, related, created]
+    optional: [updated]
+    status: [New, Adopted, Rejected]
+  issue:
+    dir: "灵感库"
+    type: Issue
+    required: [status, related, created]
+    optional: [updated]
+    status: [Open, Resolved, Dropped]
+  term:
+    dir: "术语词典"
+    type: Term
+    required: ["中文", english, location]
+  example:
+    dir: "内容设计案例"
+    type: Example
+    required: [status, related]
+    status: [Stub, Draft, Done]
+  research:
+    dir: "参考资料"
+    type: Research
+    required: []
+  art:
+    dir: "美术参考"
+    type: Art
+    required: []
+
+# Value rules for fields other than `type` and `status`.
+fields:
+  scope:
+    values: [System, Content, Mixed]
+    transitional: [Mixed]
+  related:
+    kind: links
+  location:
+    kind: link
+  created:
+    kind: date
+  updated:
+    kind: date
+  "中文":
+    kind: text
+  english:
+    kind: text
+
+ignore:
+  # Keys owned by a document tool. Never flag them, never remove them.
+  keys: ["_*", aliases, tags, cssclasses, icon]
+  # Folders the workflow does not manage.
+  dirs: [prototypes]
+
+images:
+  dirs: ["美术参考"]
+  formats: [webp, jpg, jpeg, svg, gif]
+  max_edge: 2560
+  max_kb: 1500
+  quality: 90
+  bad_names: ['^[0-9A-Fa-f]{32}$', '^剪贴板图片', '^image[0-9]*$', '^未命名', '^Pasted image', '^Screenshot']
+
+# Tool notes to load from the workflow package's adapters/ folder.
+adapters: [obsidian, tolaria]
+
 integrations:
-  obsidian: true
-  tolaria: false
   external_spec_bridge: true

@@ -1,0 +1,6 @@
+---
+type: Term
+location:
+---
+
+# TERM

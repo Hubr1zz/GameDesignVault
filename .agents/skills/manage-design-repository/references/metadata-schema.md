@@ -1,79 +1,41 @@
-# Portable metadata schema
+# Metadata model
 
-Use lowercase keys. Keep values compatible with plain YAML, Obsidian, Tolaria, Git, and ordinary text editors.
+Frontmatter is plain YAML that every Markdown tool can read. The profile decides which keys each class carries. This page explains what the keys mean and how values are written.
 
-## Inspiration
+## Two standard keys
 
-```yaml
----
-status: New
-category: inspiration
-type: System
-related:
-  - "[[Related Note]]"
-created: YYYY-MM-DD
----
-```
+| Key | Meaning | Why it is fixed |
+|---|---|---|
+| `type` | The document class. Its value comes from `classes.<class>.type`. | Document tools group notes by `type`, and some never infer class from the folder. |
+| `status` | The lifecycle stage. Its values come from `classes.<class>.status`. | Document tools render `status` as a filterable chip. |
 
-Use exactly one `type`:
+A class without a `status` list has no lifecycle. Do not add `status` to its notes.
 
-- `System`: rules, mechanics, processes, or systemic behavior.
-- `Content`: authored events, items, characters, encounters, copy, or other concrete content.
+Folder and `type` must agree. A note with a managed `type` outside its class folder is misfiled: move the note, never change the type to fit.
 
-For issue notes, retain the same schema and add:
+## Field kinds
 
-```yaml
-kind: Issue
-```
+The profile's `fields` section assigns a kind to every other key.
 
-## Formal design
+| Kind | Written as | Example |
+|---|---|---|
+| `links` | YAML list of quoted wiki links, `[]` when empty | `related:` then `- "[[Combat]]"` |
+| `link` | One quoted wiki link, or empty when not yet known | `location: "[[Hunter]]"` |
+| `date` | `YYYY-MM-DD`, unquoted | `created: 2026-01-31` |
+| `list` | YAML list of plain values | `aliases: [Tempo, 时点]` |
+| `text` | A scalar. Quote it when it contains `:`, `#`, `[` or leading punctuation. | `english: "Fighting Art"` |
 
-```yaml
----
-status: Draft
-category: design
-type: System
-related: []
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
----
-```
-
-Use the repository profile to define allowed formal statuses. Use `Content` only when the formal page primarily specifies authored content rather than a system.
-
-## Terminology
-
-```yaml
----
-status: Active
-category: terminology
-type: Term
-related: []
-location: "[[Primary Definition]]"
-aliases: []
-created: YYYY-MM-DD
----
-```
-
-## Example
-
-```yaml
----
-status: Draft
-category: example
-type: Content
-related:
-  - "[[Demonstrated Rule]]"
-created: YYYY-MM-DD
----
-```
+A field with `values` accepts only those values. A value listed under `transitional` is legal but marks unfinished work, and lint reports it as a warning until someone resolves it.
 
 ## Rules
 
+- Keys are written exactly as the profile spells them.
 - Quote every wiki link stored in YAML.
-- Use a YAML list for `related`, even when it contains one link.
-- Use `related: []` when no relevant page exists.
-- Never invent a relationship merely to avoid an empty list.
-- Preserve `created`; update `updated` on material revision.
-- Folder placement and frontmatter must agree. Report disagreement instead of silently reclassifying content.
-- Do not add these properties to file formats that do not support YAML frontmatter.
+- Leave a required link field empty when the target is unknown. An empty value is visible in views and in lint. A made-up link is not.
+- Keys matched by `ignore.keys` belong to a document tool. Preserve them and never author them.
+- Do not add frontmatter to file formats that cannot carry it.
+- Save as UTF-8 without a byte-order mark. A BOM in front of `---` hides the frontmatter from some parsers.
+
+## Changing the schema
+
+A schema change is one edit to the profile plus a migration of existing notes. Do both in the same change, update the templates and the views listed in the project rules, then run lint.
