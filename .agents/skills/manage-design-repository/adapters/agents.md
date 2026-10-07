@@ -18,3 +18,4 @@ The workflow lives in one place, `.agents/skills/manage-design-repository/`. Eac
 - When a skill's `description` changes, update its wrappers so they trigger on the same requests.
 - A host feature that enforces the workflow, such as a hook that runs lint when a session ends or before a commit, is optional. Install one only when the user asks, and make it call `scripts/vault.py lint` so that every host enforces the same checks.
 - A host that cannot run Python follows the manual checks in the skill's Verify section.
+- Continuous integration is the backstop for every host and every editor: run the tool tests and `vault.py lint` on each push and pull request. `.github/workflows/vault.yml` does this on GitHub.

@@ -7,9 +7,13 @@ Constraints that belong to this repository only. Reusable workflow behavior stay
 
 Record the note language, title conventions and file-name conventions.
 
-## Edit-history categories
+## Commit categories
 
-List the categories used in the edit history and as commit prefixes.
+List the categories used as commit prefixes. The commit log is the edit history.
+
+## Collaboration
+
+Say which changes go through pull requests and what continuous integration checks.
 
 ## Tool views
 

@@ -23,6 +23,20 @@ When two layers disagree, the profile wins for data and the project rules win fo
 4. Read `adapters/<name>.md` for an adapter listed in the profile only when the task touches that tool's views, templates or configuration, or when you meet a frontmatter key or file you do not recognize.
 5. Search with the fastest available text search before answering or writing. Before broad edits, inspect version-control status and leave unrelated changes alone.
 
+## Commands
+
+`scripts/vault.py` in this skill does the deterministic work. Use it instead of doing the same thing by hand.
+
+| Command | Use it |
+|---|---|
+| `vault.py context <note>` | Before editing a note. It prints the note's fields, outline and outgoing links, and everything that links to it, grouped by class and status. |
+| `vault.py rename <old> <new>` | To move or rename any file or folder. It rewrites wiki links, Markdown links, backticked paths, image manifests and the profile. |
+| `vault.py images [paths]` | After adding images. It converts and resizes them and adds their manifest records. |
+| `vault.py lint` | At the end of every editing task. |
+| `vault.py index` | When a program needs the whole link graph as JSON. |
+
+`rename` and `images` accept `--check` to preview without changing anything.
+
 ## Data model
 
 The profile defines every document class: its folder, its `type` value, its required fields and its allowed `status` values. Do not memorize these. Read them from the profile, and start new notes from `templates/<class>.md`.
@@ -44,7 +58,7 @@ The profile defines every document class: its folder, its `type` value, its requ
 - **Promote an inspiration**: run both review gates, edit the formal design, then close the inspiration.
 - **Change formal design**: run both review gates before editing.
 - **Define terminology, add an example, file research**: create the note from its template in its class folder.
-- **Maintain structure**: keep meaning intact, repair inbound links and navigation, and avoid unrelated cleanup.
+- **Maintain structure**: keep meaning intact, move files with `vault.py rename`, and avoid unrelated cleanup.
 
 If you cannot tell whether a change is structural, conceptual or an ordinary note, ask.
 
@@ -79,11 +93,11 @@ Run both reviews in conversation before any edit that changes the meaning of a f
 
 ## Edit formal design
 
-1. Read the target and its neighbors.
+1. Run `vault.py context` on the target and read the notes that the change could affect: open inspirations and issues that point at it, the terms it defines, its examples.
 2. Keep the user's wording unless the request needs a rewrite.
 3. Write design rules only. Do not add sections that explain what the page is for or how to read it.
 4. Use headings, folders and wiki links for structure.
-5. When you move or rename a file, repair inbound links and navigation in the same change.
+5. Move or rename files with `vault.py rename`, never by hand. Afterwards check the query blocks it lists, because it does not rewrite queries.
 
 ## Promote an inspiration
 
@@ -104,20 +118,33 @@ After the formal document is updated:
 
 The profile's `images` section sets where images live, which formats are allowed, the size limits and the file-name patterns that are rejected.
 
+Every image has one record in the nearest manifest file at or above it. The record holds its review status, the notes it belongs to (`for`) and a line of comment. An image joins the link graph through `for`: the notes listed there show the image among their backlinks.
+
 1. Name a file for what it shows. Never keep a hash, clipboard or screenshot name.
-2. Put it in the image folder for its topic and mention its file name in a note, with one line on why it is kept.
-3. Run this skill's `scripts/vault.py images <file or folder>` to convert and resize it. The command also updates the notes that mention it.
-4. Keep originals outside the repository when they matter.
+2. Put it in the image folder for its topic. Start a new set with its own empty manifest when the project rules ask for one per set.
+3. Run `vault.py images <file or folder>`. It converts and resizes the image and adds its record with the default status.
+4. Fill in `for` and `note` in the record. Change `status` only on the user's decision.
+5. Keep originals outside the repository when they matter.
 
 ## Records
 
 After a successful content edit:
 
-1. **Backlog**: remove items you completed. Add only clear follow-ups that nobody has started.
-2. **Edit history**: add one dated line for the completed change, using a category from the project rules.
-3. **Commit**, when the user has asked you to commit: one commit per completed task, with the message `<category>: <summary>`.
+1. **Backlog**: the backlog is a folder of task notes, one per item, so that people working at the same time never edit the same file. Delete the notes for work you completed. Add one note for each clear follow-up that nobody has started. To claim a task, set its status to the in-progress value and fill in `owner`.
+2. **History**: the commit log is the edit history. When the user has asked you to commit, make one commit per completed task with the message `<category>: <summary>`, using a category from the project rules. Say what changed and why in the body when the summary is not enough.
+3. When the profile defines `records.edit_history`, also add one dated line to that file.
 
-Plans, failed attempts, conversation-only reviews and maintenance of this workflow do not go into the edit history.
+Plans, failed attempts and conversation-only reviews are not recorded anywhere.
+
+## Collaboration
+
+When the profile sets `collaboration.formal_design_changes` to `pull_request`:
+
+1. Make a change to formal design on its own branch, never on the main branch.
+2. Push the branch and open a pull request. Put the design-completeness review and the implementation-clarity review in its description, so the gate is visible to reviewers.
+3. If you cannot open the pull request yourself, give the user the branch name and the link.
+
+Notes outside formal design, such as inspirations, issues, terms, tasks and research, are committed directly unless the user says otherwise.
 
 ## Verify
 

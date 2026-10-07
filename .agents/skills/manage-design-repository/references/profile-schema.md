@@ -10,8 +10,8 @@ The profile uses a small YAML subset so that `scripts/vault.py` can read it with
 
 | Key | Purpose |
 |---|---|
-| `backlog` | The shared list of work nobody has started. |
-| `edit_history` | The dated log of completed content changes. |
+| `backlog` | The folder of task notes, one per item of unfinished work. A single file also works, at the cost of merge conflicts in a team. |
+| `edit_history` | Optional. A dated log file of completed content changes. Leave it out to use the commit log as the history. |
 | `workspace_map` | Folder responsibilities. |
 | `project_rules` | Constraints that apply to this repository only. |
 | `templates` | Folder holding one `<class>.md` template per class. |
@@ -25,6 +25,7 @@ One entry per document class. The key is the class name used for the template fi
 |---|---|
 | `dir` | Folder that holds the class. Several classes may share a folder. |
 | `type` | The `type` value its notes carry. Unique across classes. |
+| `label` | Optional display name for reports and views. Defaults to `type`. |
 | `required` | Keys every note of the class must have, besides `type`. |
 | `optional` | Keys the class may have. |
 | `status` | Allowed lifecycle values. Omit for a class without a lifecycle. |
@@ -54,6 +55,25 @@ Hidden folders are always skipped.
 | `max_kb` | Size above which lint warns. |
 | `quality` | Encoder quality for converted images. |
 | `bad_names` | Regular expressions for file names that say nothing, such as hashes and clipboard names. |
+| `manifest` | File name of the image manifest, for example `images.yml`. An image's record lives in the nearest manifest at or above it. Leave it out to require only that a note mentions each image. |
+| `status` | Allowed review statuses for image records. |
+| `default_status` | Status given to a newly added image. |
+
+A manifest maps each image path, relative to the manifest, to a record:
+
+```yaml
+images:
+  "ui/card-frame.webp":
+    status: Pick
+    for: ["[[Monster]]"]
+    note: "frame proportions approved"
+```
+
+### `collaboration`
+
+| Key | Purpose |
+|---|---|
+| `formal_design_changes` | `pull_request` sends changes to formal design through a branch and a pull request. `direct` commits them to the main branch. |
 
 ### `adapters`
 

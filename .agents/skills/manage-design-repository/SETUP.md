@@ -16,7 +16,7 @@ Copy `.agents/skills/manage-design-repository/` into another design repository, 
 8. Create `.design-workflow/project-rules.md` from `assets/project-rules.md`. Merge in project-only constraints from existing agent instructions. Do not copy workflow behavior from the skill into it.
 9. Copy `assets/templates/` to `.design-workflow/templates/` and adjust each template to the profile.
 10. Add the entry points described in `adapters/agents.md`. Merge `assets/AGENTS.fragment.md` into the root `AGENTS.md`. Never overwrite existing instructions.
-11. Make sure the backlog and edit-history files exist. Keep a pre-existing format that serves the same purpose.
+11. Make sure the backlog folder exists. If the repository already keeps a backlog file or an edit-history file, keep it and point `records` at it; propose moving to one note per task only when several people edit the repository.
 12. Run `python .agents/skills/manage-design-repository/scripts/vault.py lint` and report the result. Existing notes are not normalized during setup: list what lint found and ask before any bulk migration.
 13. Do not configure a specification or engineering bridge unless the repository already has one and the user asks for it.
 14. Confirm that every installed path is relative, nothing was overwritten, and no machine path or content from the source project entered the repository.

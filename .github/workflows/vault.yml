@@ -1,0 +1,22 @@
+name: vault
+
+# Runs the workflow's own tests and lints every note, link and image record.
+# Only the Python standard library is needed, so there is nothing to install.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tool tests
+        run: python -m unittest discover -b -s .agents/skills/manage-design-repository/scripts/tests
+      - name: Lint the vault
+        run: python .agents/skills/manage-design-repository/scripts/vault.py lint

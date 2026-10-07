@@ -3,8 +3,7 @@ project_name: "PROJECT_NAME"
 language: "PROJECT_LANGUAGE"
 
 records:
-  backlog: "BACKLOG.md"
-  edit_history: "EDIT_HISTORY.md"
+  backlog: "tasks"
   workspace_map: ".design-workflow/workspace-map.md"
   project_rules: ".design-workflow/project-rules.md"
   templates: ".design-workflow/templates"
@@ -40,6 +39,12 @@ classes:
     dir: "research"
     type: Research
     required: []
+  task:
+    dir: "tasks"
+    type: Task
+    required: [status, related, created]
+    optional: [owner]
+    status: [Open, Doing]
 
 fields:
   scope:
@@ -52,6 +57,8 @@ fields:
     kind: date
   updated:
     kind: date
+  owner:
+    kind: text
 
 ignore:
   keys: [aliases, tags]
@@ -63,9 +70,15 @@ images:
   max_edge: 2560
   max_kb: 1500
   quality: 90
+  manifest: "images.yml"
+  status: [Unreviewed, Pick, Reject, Reference]
+  default_status: Unreviewed
   bad_names: ['^[0-9A-Fa-f]{32}$', '^image[0-9]*$', '^Pasted image', '^Screenshot']
 
 adapters: []
+
+collaboration:
+  formal_design_changes: direct
 
 integrations:
   external_spec_bridge: false
