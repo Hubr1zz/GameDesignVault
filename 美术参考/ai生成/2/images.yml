@@ -1,0 +1,23 @@
+# Image manifest: one record per image, keyed by its path relative to this file.
+# Checked by `vault.py lint`. `vault.py images` adds records for new images.
+images:
+  "ui/exploration-journal-ui.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "怪物设计/mourning-puppeteer.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "插画/silent-crow-ribbon.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "概念美术/stone-forest.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "装备/puppeteer-equipment-set.webp":
+    status: Unreviewed
+    for: []
+    note: ""

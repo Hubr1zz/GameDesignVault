@@ -1,0 +1,23 @@
+# Image manifest: one record per image, keyed by its path relative to this file.
+# Checked by `vault.py lint`. `vault.py images` adds records for new images.
+images:
+  "ui/relic-crafting-ui.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "怪物设计/dream-grazer.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "插画/shared-memory.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "概念美术/ancient-observatory.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "装备/dream-grazer-equipment-set.webp":
+    status: Unreviewed
+    for: []
+    note: ""

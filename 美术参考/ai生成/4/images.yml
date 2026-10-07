@@ -1,0 +1,23 @@
+# Image manifest: one record per image, keyed by its path relative to this file.
+# Checked by `vault.py lint`. `vault.py images` adds records for new images.
+images:
+  "ui/hunter-workshop-ui.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "怪物设计/mercy-swordsman.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "插画/refusal-on-the-roof.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "概念美术/drowned-vertebrae-village.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "装备/mercy-equipment-set.webp":
+    status: Unreviewed
+    for: []
+    note: ""

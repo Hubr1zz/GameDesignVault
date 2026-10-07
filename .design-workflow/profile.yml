@@ -4,8 +4,8 @@ language: "zh-CN"
 
 # Shared records and project-layer files.
 records:
-  backlog: "待办清单.md"
-  edit_history: "修改历史.md"
+  # One note per open task. Commit messages are the edit history.
+  backlog: "待办"
   workspace_map: ".design-workflow/workspace-map.md"
   project_rules: ".design-workflow/project-rules.md"
   templates: ".design-workflow/templates"
@@ -17,36 +17,50 @@ classes:
   design:
     dir: "设计文档"
     type: Design
+    label: "正式设计"
     required: []
   inspiration:
     dir: "灵感库"
     type: Inspiration
+    label: "灵感"
     required: [status, scope, related, created]
     optional: [updated]
     status: [New, Adopted, Rejected]
   issue:
     dir: "灵感库"
     type: Issue
+    label: "问题"
     required: [status, related, created]
     optional: [updated]
     status: [Open, Resolved, Dropped]
   term:
     dir: "术语词典"
     type: Term
+    label: "术语"
     required: ["中文", english, location]
   example:
     dir: "内容设计案例"
     type: Example
+    label: "案例"
     required: [status, related]
     status: [Stub, Draft, Done]
   research:
     dir: "参考资料"
     type: Research
+    label: "参考资料"
     required: []
   art:
     dir: "美术参考"
     type: Art
+    label: "美术"
     required: []
+  task:
+    dir: "待办"
+    type: Task
+    label: "待办"
+    required: [status, related, created]
+    optional: [owner]
+    status: [Open, Doing]
 
 # Value rules for fields other than `type` and `status`.
 fields:
@@ -65,6 +79,8 @@ fields:
     kind: text
   english:
     kind: text
+  owner:
+    kind: text
 
 ignore:
   # Keys owned by a document tool. Never flag them, never remove them.
@@ -78,10 +94,19 @@ images:
   max_edge: 2560
   max_kb: 1500
   quality: 90
+  # One manifest per image set; a record belongs to the nearest manifest above the image.
+  manifest: "images.yml"
+  status: [Unreviewed, Pick, Reject, Reference]
+  default_status: Unreviewed
   bad_names: ['^[0-9A-Fa-f]{32}$', '^剪贴板图片', '^image[0-9]*$', '^未命名', '^Pasted image', '^Screenshot']
 
 # Tool notes to load from the workflow package's adapters/ folder.
 adapters: [obsidian, tolaria]
+
+collaboration:
+  # pull_request: changes to formal design go through a branch and a pull request.
+  # direct: they are committed straight to the main branch.
+  formal_design_changes: pull_request
 
 integrations:
   external_spec_bridge: true

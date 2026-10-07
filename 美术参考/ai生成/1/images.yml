@@ -1,0 +1,23 @@
+# Image manifest: one record per image, keyed by its path relative to this file.
+# Checked by `vault.py lint`. `vault.py images` adds records for new images.
+images:
+  "ui/combat-table-ui.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "怪物设计/oathbound-hart.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "插画/memorial-flame.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "概念美术/first-encampment.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "装备/hart-equipment-set.webp":
+    status: Unreviewed
+    for: []
+    note: ""

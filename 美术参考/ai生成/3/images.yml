@@ -1,0 +1,23 @@
+# Image manifest: one record per image, keyed by its path relative to this file.
+# Checked by `vault.py lint`. `vault.py images` adds records for new images.
+images:
+  "ui/opera-boss-ui.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "怪物设计/comedian-of-grief.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "插画/lost-wedding.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "概念美术/petrified-amphitheater.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "装备/opera-equipment-set.webp":
+    status: Unreviewed
+    for: []
+    note: ""

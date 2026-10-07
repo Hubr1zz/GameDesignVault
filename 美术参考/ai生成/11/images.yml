@@ -1,0 +1,7 @@
+# Image manifest: one record per image, keyed by its path relative to this file.
+# Checked by `vault.py lint`. `vault.py images` adds records for new images.
+images:
+  "插画/procession-with-broad-painted-masses.webp":
+    status: Unreviewed
+    for: []
+    note: ""

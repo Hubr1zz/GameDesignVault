@@ -1,0 +1,15 @@
+# Image manifest: one record per image, keyed by its path relative to this file.
+# Checked by `vault.py lint`. `vault.py images` adds records for new images.
+images:
+  "ui/narrow-ornate-baroque-border-kit.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "插画/procession-beneath-layered-clouds.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "装备/abstracted-storm-equipment-set.webp":
+    status: Unreviewed
+    for: []
+    note: ""

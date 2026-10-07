@@ -1,0 +1,23 @@
+# Image manifest: one record per image, keyed by its path relative to this file.
+# Checked by `vault.py lint`. `vault.py images` adds records for new images.
+images:
+  "ui/inkline-combat-ui.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "怪物设计/vein-bell.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "插画/bell-strike-rescue.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "概念美术/hollow-hand-salt-mountain.webp":
+    status: Unreviewed
+    for: []
+    note: ""
+  "装备/vein-bell-equipment-set.webp":
+    status: Unreviewed
+    for: []
+    note: ""
