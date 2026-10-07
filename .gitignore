@@ -14,3 +14,15 @@
 .idea/
 *.swp
 *.swo
+
+# Obsidian per-machine UI state (layout, open tabs)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Agent bridge: machine-local config and runtime state.
+# Schema: .agents/skills/document-change-to-openspec/references/bridge-schema.md
+.agent-bridge/
