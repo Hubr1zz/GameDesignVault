@@ -1,4 +1,7 @@
-﻿# Design Essentials & Challenges
+---
+type: Design
+---
+# Design Essentials & Challenges
 
 
 ## 一定要保留的设计
@@ -44,10 +47,10 @@
 
 其他ui尽量以“桌面物件”的方式表现。例如让玩家自己拖动角色和资源互动。或者战斗时，命中判定或许可以用抽鬼牌的形式表现，伤害卡和闪避卡混在一起让玩家抽取。
 
-![Cultist Simulator](Design%20Essentials%20&%20Challenges/image.png)
+（缺图：Cultist Simulator 参考图，Notion 导入时未随文档保留）
 
 Cultist Simulator
 
-![Inscription](Design%20Essentials%20&%20Challenges/image%201.png)
+（缺图：Inscription 参考图，Notion 导入时未随文档保留）
 
 Inscription

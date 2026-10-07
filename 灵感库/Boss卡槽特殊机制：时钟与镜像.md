@@ -1,5 +1,10 @@
-﻿---
-category: inspiration
+---
+type: Inspiration
+status: New
+scope: System
+related:
+  - "[[怪物 Monster]]"
+created: 2026-05-28
 ---
 
 # Boss卡槽特殊机制：时钟与镜像

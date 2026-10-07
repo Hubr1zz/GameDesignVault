@@ -1,3 +1,6 @@
+---
+type: Research
+---
 # KDM 学习索引
 
 本文件夹用于沉淀 `Kingdom Death: Monster` 与 `Aeon Trespass: Odyssey` 的结构拆解。当前先建立 KDM 的两个设计样本库，重点看“触发条件如何把内容接入战役循环”和“奖励如何改变角色/据点/战斗能力”。

@@ -1,3 +1,6 @@
+---
+type: Research
+---
 # GCE 失调卡
 
 | Disorder | 来源 / 获取 | 具体效果 |

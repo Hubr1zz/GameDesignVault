@@ -1,3 +1,6 @@
+---
+type: Research
+---
 # bsidem：AI 生成与维护 Unity Prefab 的工作流
 
 > 调查日期：2026-08-19

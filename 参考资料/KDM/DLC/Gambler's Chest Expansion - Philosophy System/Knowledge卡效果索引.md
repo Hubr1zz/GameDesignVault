@@ -1,3 +1,6 @@
+---
+type: Research
+---
 # Knowledge 卡效果索引
 
 > 数据源：[List of Knowledges](https://kingdomdeath.fandom.com/wiki/List_of_Knowledges)。本表是检索底表，保留英文卡名和关键术语；系统词汇与完整升级流程见 [[术语与流程]]。

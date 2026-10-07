@@ -1,3 +1,6 @@
+---
+type: Design
+---
 # 关键词系统 Keyword system
 
 ## 定义

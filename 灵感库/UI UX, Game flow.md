@@ -1,5 +1,9 @@
-﻿---
-category: inspiration
+---
+type: Inspiration
+status: New
+scope: System
+related: []
+created: 2026-05-10
 ---
 
 # UI/UX, Game flow
@@ -20,7 +24,7 @@ Idea Birthday: 2026年5月10日 02:42
         - 永久状态栏：平时只显示图标和名字。鼠标悬浮时，显示额外信息。
     - 场地信息：比如时点。
     
-    ![image.png](UI%20UX,%20Game%20flow/image.png)
+    （缺图：Notion 导入时未随文档保留）
     
 - 教程
     

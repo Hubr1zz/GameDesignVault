@@ -1,3 +1,6 @@
+---
+type: Research
+---
 # KDM 非基础扩展 DLC 总索引
 
 > 基准：`Kingdom Death: Monster 1.6` 核心盒。明确排除 Expansions of Death Vol. I 的 12 个旧扩展：Gorm、Dragon King、Slenderman、Lion Knight、Lion God、Manhunter、Sunstalker、Green Knight Armor、Flower Knight、Lonely Tree、Spidicules、Dung Beetle Knight。当前覆盖“非旧扩展 Monster/Campaign Expansion + 官方商店当前 Gameplay Expansions 分类”；不把历史上所有节日卡、促销卡和已下架 White Box 算作本轮 DLC。更新时间：2026-08-16。

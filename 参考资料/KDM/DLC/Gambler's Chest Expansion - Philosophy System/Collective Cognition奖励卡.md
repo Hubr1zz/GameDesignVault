@@ -1,3 +1,6 @@
+---
+type: Research
+---
 # Collective Cognition 奖励卡
 
 > 先读 [[术语与流程#CC Reward、Attain 与唯一奖励]]。`Attain` 表示纳入战役可用池；怪物 Cuisine 卡应按本战役采用的相应节点 Quarry 选入，不能把同阈值的所有卡同时放进奖励牌堆。

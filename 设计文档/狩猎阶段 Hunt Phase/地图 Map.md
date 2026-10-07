@@ -1,5 +1,5 @@
 ---
-type: System
+type: Design
 ---
 # 地图 Map
 

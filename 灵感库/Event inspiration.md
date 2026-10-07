@@ -1,5 +1,10 @@
-﻿---
-category: inspiration
+---
+type: Inspiration
+status: New
+scope: Content
+related:
+  - "[[事件 Events]]"
+created: 2026-05-10
 ---
 
 # Event inspiration

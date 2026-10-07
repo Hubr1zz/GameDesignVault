@@ -1,4 +1,7 @@
-﻿# World settings 世界观设定
+---
+type: Design
+---
+# World settings 世界观设定
 
 
 **3个风格关键词：**压抑，原始，美

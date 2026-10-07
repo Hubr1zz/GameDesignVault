@@ -1,7 +1,7 @@
 ---
+type: Inspiration
 status: New
-category: inspiration
-type: System
+scope: System
 related:
   - "[[怪物 Monster]]"
   - "[[命运值]]"

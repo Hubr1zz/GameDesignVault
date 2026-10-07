@@ -1,3 +1,6 @@
+---
+type: Research
+---
 # White Speaker is Dead
 
 > 来源：Pariah Expansion 规则书 Story Event。剧透级别：高。公开照片只覆盖事件页上半部，本文仅记录可从实体照片和多份评测确认的内容。

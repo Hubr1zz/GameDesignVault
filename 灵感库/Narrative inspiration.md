@@ -1,5 +1,10 @@
 ---
-category: inspiration
+type: Inspiration
+status: New
+scope: Content
+related:
+  - "[[World settings 世界观设定]]"
+created: 2026-05-10
 ---
 
 # Narrative inspiration
@@ -68,4 +73,4 @@ Idea Birthday: 2026年5月10日 02:42
 狩猎猎人之人：有一个以狩猎其他部落为娱乐的族群，会定期挑选目标并猎杀。例如第一次前来的时优雅的猎人者，他遵守一些规则，天亮了或是沙漏停止就结束狩猎，所以战斗时可以不断以某种方式积累一种卡牌，直到X张之后，boss结束狩猎。boss本身强度很高，几乎无法打败。第二次来的是别的猎人者，有别的规则
 
 - 我喜欢的KDM文案参考
-![image.png](./Narrative inspiration/image.png)
+（缺图：Notion 导入时未随文档保留）

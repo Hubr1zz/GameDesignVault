@@ -1,5 +1,5 @@
 ---
-type: System
+type: Design
 ---
 ## 事件在游戏循环中的位置
 

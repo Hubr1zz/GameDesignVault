@@ -1,3 +1,9 @@
+---
+type: Example
+status: Draft
+related:
+  - "[[地图 Map]]"
+---
 # 地图物件 -例子 Example Map Objects
 
 本页用于记录地图物件与资源点案例，不承担地图系统规则定义。

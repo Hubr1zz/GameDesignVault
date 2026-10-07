@@ -9,12 +9,13 @@ views:
       direction: DESC
     order:
       - file.name
-      - type
-      - category
+      - status
+      - scope
       - related
+      - created
     sort:
-      - property: category
-        direction: ASC
+      - property: status
+        direction: DESC
       - property: related
         direction: DESC
     cardSize: 80
@@ -22,5 +23,5 @@ views:
     image: note.name
     columnSize:
       file.name: 339
-      note.type: 214
-      note.category: 159
+      note.status: 120
+      note.scope: 120

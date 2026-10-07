@@ -1,5 +1,5 @@
 ---
-type: Note
+type: Design
 ---
 # 怪物 Monster
 

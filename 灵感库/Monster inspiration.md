@@ -1,6 +1,10 @@
 ---
-category: inspiration
 type: Inspiration
+status: New
+scope: Mixed
+related:
+  - "[[怪物 Monster]]"
+created: 2026-05-10
 ---
 # Monster inspiration
 

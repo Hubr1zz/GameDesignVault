@@ -1,4 +1,5 @@
 ---
+type: Design
 _organized: true
 ---
 # 猎人 Hunter

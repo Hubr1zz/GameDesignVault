@@ -1,3 +1,6 @@
+---
+type: Research
+---
 # Philosophy 卡概览
 
 > 数据源主要来自 [Philosophies](https://kingdomdeath.fandom.com/wiki/Philosophies) 与各哲学条目。哲学卡通常包含：类型、Neurosis、Tenet Knowledge、rank 阈值和多个 rank 效果表。这里记录来源与功能摘要，详细 Knowledge 效果见 [[Knowledge卡效果索引]]。
