@@ -25,7 +25,7 @@ compare or import them.
 | `内容设计案例/` | Concrete content examples, such as monsters, events, narrative samples, map objects, and resource point cases. |
 | `美术参考/` | Image references and visual material used by design notes. |
 | `.design-workflow/` | Project-specific workflow configuration, workspace map, and maintenance rules. |
-| `zWorkFlow_Design/` | Portable workflow package used to interpret `.design-workflow/`. |
+| `.agents/skills/` | Agent skills: the portable workflow package and project-specific skills. |
 | `.obsidian/` | Obsidian configuration. Do not edit unless the user asks for vault/app configuration changes. |
 
 ## Design Documents

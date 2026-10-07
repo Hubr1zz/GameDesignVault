@@ -1,7 +1,7 @@
 ---
 name: kdm-dlc-research
 description: >-
-  研究并整理 Kingdom Death: Monster 非核心1.6内容。用于创建或更新 KDMDLC 下的
+  研究并整理 Kingdom Death: Monster 非核心1.6内容。用于创建或更新 参考资料/KDM/DLC 下的
   Monster Expansion、Gameplay Expansion、Vignette、Wanderer、Campaign 等中文资料，
   重点记录装备、失调、事件、专属机制、来源、触发条件与具体效果，并控制未发行内容的不确定性。
 ---
@@ -12,7 +12,7 @@ description: >-
 
 ## 1. 确定范围与状态
 
-1. 先读 `zWorkFlow_Design/manage-design-repository/SKILL.md`、`.design-workflow/workspace-map.md`、`.design-workflow/project-rules.md`、`待办清单.md` 和已有同类文档。
+1. 先读 `.agents/skills/manage-design-repository/SKILL.md`、`.design-workflow/workspace-map.md`、`.design-workflow/project-rules.md`、`待办清单.md` 和已有同类文档。
 2. 以 KDM 1.6 核心盒为比较基准。Expansions of Death Vol. I 的十二个旧扩展只有在用户明确要求时才纳入。
 3. 收录带实质玩法组件的官方产品：Monster/Campaign Expansion、Gameplay Expansion、Vignette、Wanderer、Pillar、Seed Pattern、Indomitable/Anniversary/Echoes 等。
 4. 排除纯树脂展示模型、Pinup、Bust、骰子和无规则卡的周边。

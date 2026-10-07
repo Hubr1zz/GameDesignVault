@@ -7,7 +7,7 @@ while the project bridge is disabled and cannot read the Unity project.
 Initialize from the last implemented revision and check the working tree:
 
 ```powershell
-python zWorkFlow_Design/manage-design-repository/scripts/check_formal_design_hashes.py --baseline-from-git HEAD
+python .agents/skills/document-change-to-openspec/scripts/check_formal_design_hashes.py --baseline-from-git HEAD
 ```
 
 The script writes `.agent-bridge/design-hash-baseline.json` and

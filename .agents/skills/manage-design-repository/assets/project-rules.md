@@ -6,7 +6,7 @@ It stores constraints that belong to the target repository rather than to the po
 ## Repository-specific constraints
 
 Record project identity, naming rules, editor conventions, integration policies, and other constraints here.
-Keep reusable workflow behavior in `zWorkFlow_Design/manage-design-repository/SKILL.md` instead.
+Keep reusable workflow behavior in `.agents/skills/manage-design-repository/SKILL.md` instead.
 
 ## Optional integrations
 

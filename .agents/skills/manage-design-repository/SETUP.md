@@ -1,12 +1,12 @@
 # Portable design-workflow setup
 
-Give an agent this instruction after placing `zWorkFlow_Design/` in the root of another design repository:
+Give an agent this instruction after copying `.agents/skills/manage-design-repository/` into another design repository:
 
-> Read `zWorkFlow_Design/SETUP.md` completely and set up the portable design-document workflow for this repository. Preserve existing content and agent instructions. Ask only when repository paths or metadata semantics cannot be inferred safely.
+> Read `.agents/skills/manage-design-repository/SETUP.md` completely and set up the portable design-document workflow for this repository. Preserve existing content and agent instructions. Ask only when repository paths or metadata semantics cannot be inferred safely.
 
 ## Agent setup procedure
 
-1. Treat the directory containing `zWorkFlow_Design/` as the target repository root.
+1. Treat the directory containing `.agents/` as the target repository root.
 2. Read `manage-design-repository/SKILL.md` and `references/profile-schema.md` completely.
 3. Inspect existing Markdown directories, root navigation, backlog/history files, version-control status, and agent instruction files. Do not read unrelated external repositories.
 4. Map existing directories to formal design, inspirations, terminology, examples, and references. Prefer existing structure; create generic defaults only when no equivalent exists.
