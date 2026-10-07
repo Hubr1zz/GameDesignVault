@@ -34,6 +34,8 @@ When two layers disagree, the profile wins for data and the project rules win fo
 | `vault.py images [paths]` | After adding images. It converts and resizes them and adds their manifest records. |
 | `vault.py lint` | At the end of every editing task. |
 | `vault.py index` | When a program needs the whole link graph as JSON. |
+| `vault.py serve` | When a person wants to read: it opens the workbench, a read-only web view with typed backlinks, an image board and an inbox. |
+| `vault.py export <folder>` | To write the workbench as a static site for people who only read. |
 
 `rename` and `images` accept `--check` to preview without changing anything.
 

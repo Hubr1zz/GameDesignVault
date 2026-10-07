@@ -20,3 +20,19 @@ jobs:
         run: python -m unittest discover -b -s .agents/skills/manage-design-repository/scripts/tests
       - name: Lint the vault
         run: python .agents/skills/manage-design-repository/scripts/vault.py lint
+
+  workbench:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .workbench
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: .workbench/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build

@@ -6,6 +6,8 @@
     python vault.py rename <old> <new>      move or rename, rewriting every reference
     python vault.py images [paths]          convert new images and update manifests
     python vault.py index [--out FILE]      dump the whole link graph as JSON
+    python vault.py serve                   open the read-only workbench in a browser
+    python vault.py export <folder>         write the workbench as a static site
 
 Everything project-specific comes from `.design-workflow/profile.yml`. Only the
 standard library is needed, except that converting images needs Pillow.
@@ -16,7 +18,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from vaultlib import images, index, lint, rename
+from vaultlib import images, index, lint, rename, serve, site
 from vaultlib.model import Vault, find_root
 
 
@@ -46,6 +48,15 @@ def main() -> int:
     p = sub.add_parser("index", help="dump the link graph as JSON")
     p.add_argument("--out", help="write to this file instead of standard output")
 
+    p = sub.add_parser("serve", help="serve the read-only workbench on this machine")
+    p.add_argument("--port", type=int, default=8765, help="first port to try (default 8765)")
+    p.add_argument("--no-open", action="store_true", help="do not open a browser")
+    p.add_argument("--no-build", action="store_true", help="do not rebuild the front end")
+
+    p = sub.add_parser("export", help="write the workbench as a static, read-only site")
+    p.add_argument("folder", help="output folder, outside the vault or hidden inside it")
+    p.add_argument("--no-build", action="store_true", help="do not rebuild the front end")
+
     args = parser.parse_args()
     v = Vault(find_root())
     if args.cmd == "lint":
@@ -56,6 +67,10 @@ def main() -> int:
         return rename.run(v, args.old, args.new, args.check)
     if args.cmd == "images":
         return images.run(v, args.paths, args.check, args.prune)
+    if args.cmd == "serve":
+        return serve.run(v, args.port, not args.no_open, not args.no_build)
+    if args.cmd == "export":
+        return site.export(v, args.folder, not args.no_build)
     return index.run_index(v, args.out)
 
 

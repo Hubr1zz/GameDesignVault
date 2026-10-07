@@ -1,13 +1,17 @@
 """Tests for vaultlib. Run from the scripts folder: python -m unittest discover -s tests"""
+import json
 import shutil
 import sys
 import tempfile
+import threading
 import unittest
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from vaultlib import images, index, lint, rename  # noqa: E402
+from vaultlib import images, index, lint, rename, serve, site  # noqa: E402
 from vaultlib.model import Vault  # noqa: E402
 from vaultlib.yamlsubset import inline_list, parse_yaml, quote, split_note  # noqa: E402
 
@@ -247,6 +251,61 @@ class Rename(unittest.TestCase):
         self.assertEqual(text(v, "README.md"), before)
         self.assertTrue((v.root / "design/Combat.md").is_file())
         self.assertEqual(rename.run(v, "Combat", "Hunter"), 1)
+
+
+class Workbench(unittest.TestCase):
+    DIST = {".workbench/dist/index.html": "<html>ok</html>", ".workbench/dist/assets/app.js": "x"}
+
+    def test_index_says_what_each_written_link_points_to(self):
+        readme = index.build(make_vault())["notes"]["README.md"]
+        self.assertEqual(readme["targets"], {"Combat": "design/Combat.md", "design/Combat": "design/Combat.md"})
+        self.assertEqual(readme["hrefs"], {"design/Combat.md": "design/Combat.md"})
+
+    def test_server_serves_data_and_indexed_files_only(self):
+        v = make_vault(self.DIST)
+        server = serve.make_server(v.root, 0, v.root / ".workbench" / "dist")
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        self.addCleanup(server.server_close)
+        self.addCleanup(server.shutdown)
+        base = f"http://127.0.0.1:{server.server_address[1]}"
+
+        def get(path):
+            with urllib.request.urlopen(base + path, timeout=5) as response:
+                return response.read()
+
+        self.assertIn("design/Combat.md", json.loads(get("/data/index.json"))["notes"])
+        self.assertEqual(json.loads(get("/data/lint.json"))["errors"], 0)
+        self.assertIsInstance(json.loads(get("/data/log.json")), list)
+        self.assertIn(b"# Combat", get("/files/design/Combat.md"))
+        self.assertEqual(get("/"), b"<html>ok</html>")
+        self.assertEqual(get("/assets/app.js"), b"x")
+        # No thumbnail can be made from this stand-in image, so the original is sent.
+        self.assertEqual(get("/thumbs/art/style/gate.webp.webp"), b"x")
+        for blocked in ("/files/.design-workflow/profile.yml", "/files/code/README.md", "/files/../README.md",
+                        "/assets/../../../README.md", "/files/nope.md", "/data/secret.json"):
+            with self.assertRaises(urllib.error.HTTPError, msg=blocked):
+                get(blocked)
+
+    def test_server_picks_up_edits(self):
+        v = make_vault(self.DIST)
+        s = serve.Site(v.root, None)
+        s.refresh()
+        self.assertNotIn("design/New.md", s.files)
+        (v.root / "design" / "New.md").write_text("---\ntype: Design\n---\n", encoding="utf-8")
+        s._checked = 0.0  # skip the one-second pause between scans
+        s.refresh()
+        self.assertIn("design/New.md", s.files)
+
+    def test_export_writes_everything_the_front_end_requests(self):
+        v = make_vault(self.DIST)
+        out = v.root / ".workbench" / "site"
+        self.assertEqual(site.export(v, str(out), build=False), 0)
+        for rel in ("index.html", "assets/app.js", "data/index.json", "data/lint.json", "data/log.json",
+                    "files/design/Combat.md", "files/art/style/gate.webp", "thumbs/art/style/gate.webp.webp"):
+            self.assertTrue((out / rel).is_file(), rel)
+        # A visible copy inside the vault would be indexed as a second set of notes.
+        self.assertEqual(site.export(v, str(v.root / "public"), build=False), 1)
+        self.assertFalse((v.root / "public").exists())
 
 
 if __name__ == "__main__":

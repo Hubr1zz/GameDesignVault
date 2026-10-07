@@ -11,6 +11,7 @@
 | `待办清单.md` | 待办的查询视图，条目本身在 `待办/` |
 | `术语词典.md` | 术语索引页，查询 `术语词典/` 下的词条 |
 | `库视图.base` | 灵感库的表格视图 |
+| `启动工作台.bat` | 打开只读工作台，等同于运行 `vault.py serve` |
 
 ## 文档目录
 
@@ -56,6 +57,7 @@
 | `.design-workflow/` | 本项目的工作流配置：profile、项目规则、本地图、模板 |
 | `.agents/skills/` | agent skill：通用工作流包和项目专用 skill |
 | `.claude/` | Claude Code 的入口和 skill 包装 |
+| `.workbench/` | 工作台的前端代码。数据全部来自 `.agents/skills/manage-design-repository/scripts/vault.py`，说明见 `.workbench/README.md` |
 | `.github/` | 持续集成（每次推送运行测试和 lint）与合并请求模板 |
 | `.obsidian/` | Obsidian 配置。除非用户要求改配置，否则不编辑 |
 | `.agent-bridge/` | 规格桥接的本机配置与运行状态，不进版本库 |

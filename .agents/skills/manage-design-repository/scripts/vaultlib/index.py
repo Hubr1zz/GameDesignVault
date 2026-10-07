@@ -5,6 +5,7 @@ from __future__ import annotations
 import datetime
 import fnmatch
 import json
+import re
 
 from .model import HEADING, MDLINK, WIKILINK, Vault, segments, strip_code
 
@@ -19,11 +20,16 @@ def _note_entry(v: Vault, rel: str) -> dict:
     managed = key if key and v.dir_of(rel) == v.classes[key]["dir"].strip("/") else None
 
     links, unresolved, seen = [], [], set()
+    # What each link as written points to, so a viewer never re-implements resolution.
+    targets: dict[str, str | None] = {}
+    hrefs: dict[str, str | None] = {}
 
     def add(target: str, via: str, anchor=None):
-        path, _ = v.resolve(target.rstrip("\\").strip(), rel)
+        written = target.rstrip().rstrip("\\").strip()
+        path, _ = v.resolve(written, rel)
+        targets[written] = path
         if path is None:
-            unresolved.append(target)
+            unresolved.append(written)
         elif path != rel and (path, via) not in seen:
             seen.add((path, via))
             links.append({"target": path, "via": via, **({"anchor": anchor[1:]} if anchor else {})})
@@ -37,13 +43,18 @@ def _note_entry(v: Vault, rel: str) -> dict:
     for m in WIKILINK.finditer(text):
         add(m.group(2), "body", m.group(3))
     for m in MDLINK.finditer(text):
-        path = v.resolve_href(m.group(3), rel)
+        written = m.group(3).split("#")[0]
+        if not written or re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", written):
+            continue
+        path = v.resolve_href(written, rel)
+        hrefs[written] = path
         if path and path != rel and (path, "body") not in seen:
             seen.add((path, "body"))
             links.append({"target": path, "via": "body"})
 
     return {"title": title, "class": managed, "type": fm.get("type"), "status": fm.get("status"),
-            "frontmatter": fm, "headings": headings, "links": links, "unresolved": unresolved}
+            "frontmatter": fm, "headings": headings, "links": links, "unresolved": unresolved,
+            "targets": targets, "hrefs": hrefs}
 
 
 def build(v: Vault) -> dict:
