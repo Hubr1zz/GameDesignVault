@@ -290,13 +290,22 @@ h3 {
 
 .side-heading {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 4px;
+}
+
+.side-toggle {
+  flex: 1;
   border: 0;
   background: none;
-  padding: 5px 4px;
+  padding: 0;
   font-weight: 600;
   text-align: left;
+}
+
+.side-table {
+  font-size: 12px;
 }
 
 .side-folder {
@@ -467,9 +476,101 @@ a.broken {
   cursor: help;
 }
 
-.query-block {
+.query-block,
+.query-result {
   margin: 1em 0;
-  opacity: 0.8;
+}
+
+.query-result table {
+  margin: 0 0 4px;
+}
+
+.query-block summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.blank {
+  color: var(--muted);
+}
+
+a.tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ----------------------------------------------------------- folder table */
+.docs.wide {
+  grid-template-columns: 270px minmax(0, 1fr);
+}
+
+.table-main {
+  padding: 16px 24px 60px;
+}
+
+.table-head h1 {
+  font-size: 1.4em;
+  margin: 0 0 8px;
+}
+
+.table-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.table-bar .search {
+  width: 280px;
+  margin: 0;
+}
+
+.folder-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+}
+
+.folder-table th {
+  position: sticky;
+  top: -16px;
+  background: var(--panel);
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.folder-table th button {
+  border: 0;
+  background: none;
+  padding: 6px 10px;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+}
+
+.folder-table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.folder-table tbody tr:hover {
+  background: var(--panel);
+}
+
+.cell-name {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.cell-excerpt {
+  color: var(--muted);
+  min-width: 260px;
 }
 
 .query-label {
@@ -769,5 +870,68 @@ a.broken {
 
   .inbox {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Narrow panes and phones: one column, with the note list above the note. */
+@media (max-width: 720px) {
+  .topbar {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    padding: 6px 10px;
+  }
+
+  .views {
+    height: auto;
+  }
+
+  .views a {
+    padding: 4px 8px;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .docs,
+  .docs.wide {
+    display: block;
+    overflow-y: auto;
+  }
+
+  .sidebar {
+    max-height: 34vh;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .note-main,
+  .table-main {
+    overflow: visible;
+    padding: 14px 14px 60px;
+  }
+
+  .folder-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .folder-table th {
+    position: static;
+  }
+
+  .lightbox figure {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .lightbox figure > img {
+    max-width: 100%;
+    max-height: 60vh;
+  }
+
+  .lightbox figcaption {
+    width: auto;
   }
 }

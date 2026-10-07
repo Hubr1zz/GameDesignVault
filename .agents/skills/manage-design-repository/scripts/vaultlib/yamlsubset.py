@@ -76,7 +76,7 @@ def _inline_list(s: str) -> list:
 
 def parse_yaml(text: str):
     rows = []
-    for raw in text.lstrip("﻿").splitlines():
+    for raw in text.lstrip("\ufeff").splitlines():
         line = _strip_comment(raw).rstrip()
         if line.strip():
             rows.append((len(line) - len(line.lstrip(" ")), line.strip()))
@@ -121,7 +121,7 @@ def parse_yaml(text: str):
 
 def split_note(text: str):
     """Return (frontmatter dict or None, body)."""
-    text = text.lstrip("﻿")
+    text = text.lstrip("\ufeff")
     m = FRONTMATTER.match(text)
     if not m:
         return None, text

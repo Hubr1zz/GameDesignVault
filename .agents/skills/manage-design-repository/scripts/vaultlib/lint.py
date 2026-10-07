@@ -45,7 +45,7 @@ def lint_frontmatter(v: Vault, r: Report):
     class_dirs = v.class_dirs()
 
     for rel in v.notes:
-        if v.read(rel).startswith("﻿"):
+        if v.read(rel).startswith("\ufeff"):
             r.error("frontmatter", rel, "starts with a UTF-8 BOM; remove it")
         fm, _ = v.note(rel)
         home = v.dir_of(rel)

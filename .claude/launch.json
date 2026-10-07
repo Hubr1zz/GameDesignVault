@@ -4,8 +4,8 @@
     {
       "name": "workbench",
       "runtimeExecutable": "python",
-      "runtimeArgs": [".agents/skills/manage-design-repository/scripts/vault.py", "serve", "--no-open", "--port", "8765"],
-      "port": 8765
+      "runtimeArgs": [".agents/skills/manage-design-repository/scripts/vault.py", "serve", "--no-open", "--port", "8775"],
+      "port": 8775
     }
   ]
 }

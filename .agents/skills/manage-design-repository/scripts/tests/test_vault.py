@@ -261,6 +261,20 @@ class Workbench(unittest.TestCase):
         self.assertEqual(readme["targets"], {"Combat": "design/Combat.md", "design/Combat": "design/Combat.md"})
         self.assertEqual(readme["hrefs"], {"design/Combat.md": "design/Combat.md"})
 
+    def test_index_carries_excerpts_class_fields_and_saved_views(self):
+        v = make_vault({
+            "Board.base": 'views:\n  - filters:\n      and:\n        - file.inFolder("ideas")\n',
+            "glossary/Grit.md": ("---\ntype: Term\nlocation:\n---\n# Grit\n\nCreated: 2026年1月2日 03:04\n\n| a |\n|---|\n\n```query\nx\n```\n\n"
+                                 "- **Grit** is [[Combat|fighting]] spirit and `nerve`.\n"),
+        })
+        data = index.build(v)
+        self.assertEqual(data["notes"]["glossary/Grit.md"]["excerpt"], "Grit is fighting spirit and nerve.")
+        self.assertEqual(data["notes"]["ideas/Idea A.md"]["excerpt"], "Changes tempo. Example syntax: Combat.")
+        self.assertEqual(data["notes"]["design/Combat.md"]["excerpt"], "Uses Hunter.")
+        self.assertEqual(data["classes"]["inspiration"]["fields"], ["status", "related", "created"])
+        self.assertEqual(data["classes"]["task"]["required"], ["status", "related"])
+        self.assertEqual(data["views"], {"Board.base": ["ideas"]})
+
     def test_server_serves_data_and_indexed_files_only(self):
         v = make_vault(self.DIST)
         server = serve.make_server(v.root, 0, v.root / ".workbench" / "dist")

@@ -56,6 +56,8 @@
 
 下列文件是 frontmatter 的投影。改字段名或移动目录时必须同步更新。
 
+工作台会自己执行简单的 Dataview 查询：`TABLE` 或 `LIST`，`FROM "目录"`，`WHERE` 里用 `AND` 连接的等值和空值判断，以及 `SORT`。写新查询时保持在这个范围内；用了函数、`OR`、`GROUP BY` 等写法的查询在工作台里只会显示“未执行”。Bases 视图工作台不执行，会改为链接到该目录的表格视图。
+
 | 文件 | 工具 | 读取的字段 |
 |---|---|---|
 | `库视图.base` | Obsidian Bases | `type` `status` `scope` `related` `created`，按目录 `灵感库` 过滤 |

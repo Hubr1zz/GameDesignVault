@@ -84,4 +84,13 @@ export function imageGroup(path: string, manifest: string | null): ImageGroup {
   return { set: setDir, kind: cut < 0 ? "" : rest.slice(0, cut) };
 }
 
+/** Class keys whose notes live in a folder; several classes may share one. */
+export function classesInFolder(index: VaultIndex, folder: string): string[] {
+  const wanted = folder.replace(/\/+$/, "");
+  return Object.keys(index.classes).filter((key) => index.classes[key].dir.replace(/\/+$/, "") === wanted);
+}
+
+/** A frontmatter value counts as missing when it is absent, null or an empty string. */
+export const isBlank = (value: unknown) => value === undefined || value === null || value === "";
+
 export const VIA_LABEL: Record<string, string> = { body: "提及", for: "配图" };

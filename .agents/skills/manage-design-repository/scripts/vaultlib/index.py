@@ -9,6 +9,28 @@ import re
 
 from .model import HEADING, MDLINK, WIKILINK, Vault, segments, strip_code
 
+_SKIP_LINE = re.compile(r"^(#|\||---|===|!\[|>|<)")
+# A line that only stamps a date, such as "Created: 2026-01-02", says nothing about the note.
+_STAMP = re.compile(r"^[^:：]{1,30}[:：]\s*\d{4}\s*[年/.-]")
+_IN_FOLDER = re.compile(r'inFolder\(\s*"([^"]+)"\s*\)')
+
+
+def excerpt(body: str, limit: int = 140) -> str:
+    """The first line of prose in a note, as plain text: what a tooltip or a table
+    row can show without opening the note."""
+    prose = "".join(chunk for kind, chunk in segments(body) if kind != "fence")
+    for line in prose.splitlines():
+        s = line.strip()
+        if not s or _SKIP_LINE.match(s) or _STAMP.match(s):
+            continue
+        s = re.sub(r"^([-*+]|\d+[.)])\s+", "", s)
+        s = WIKILINK.sub(lambda m: (m.group(4) or "")[1:].strip() or m.group(2).rstrip("\\").rsplit("/", 1)[-1], s)
+        s = MDLINK.sub(lambda m: m.group(2), s)
+        s = re.sub(r"[*_`]+", "", s).strip()
+        if s:
+            return s[:limit].rstrip() + ("…" if len(s) > limit else "")
+    return ""
+
 
 def _note_entry(v: Vault, rel: str) -> dict:
     fm, body = v.note(rel)
@@ -54,7 +76,7 @@ def _note_entry(v: Vault, rel: str) -> dict:
 
     return {"title": title, "class": managed, "type": fm.get("type"), "status": fm.get("status"),
             "frontmatter": fm, "headings": headings, "links": links, "unresolved": unresolved,
-            "targets": targets, "hrefs": hrefs}
+            "targets": targets, "hrefs": hrefs, "excerpt": excerpt(body)}
 
 
 def build(v: Vault) -> dict:
@@ -80,11 +102,18 @@ def build(v: Vault) -> dict:
         for target in entry["for"]:
             backlinks.setdefault(target, []).append({"source": image, "via": "for"})
 
-    classes = {key: {"type": spec["type"], "dir": spec["dir"], "label": spec.get("label") or spec["type"],
-                     "status": spec.get("status") or []} for key, spec in v.classes.items()}
+    classes = {key: {"type": spec["type"], "dir": spec["dir"].strip("/"), "label": spec.get("label") or spec["type"],
+                     "status": spec.get("status") or [],
+                     "required": list(spec.get("required") or []),
+                     "fields": list(dict.fromkeys((spec.get("required") or []) + (spec.get("optional") or [])))}
+               for key, spec in v.classes.items()}
+    # Saved views of a note tool, with the folders they filter on, so a viewer
+    # can offer its own listing of the same folder instead of a raw file.
+    views = {f: _IN_FOLDER.findall(v.read(f)) for f in v.files if f.lower().endswith(".base")}
     return {"generated": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
             "project": v.profile.get("project_name"), "classes": classes,
-            "image_status": v.image_rules["status"], "notes": notes, "images": images, "backlinks": backlinks}
+            "image_status": v.image_rules["status"], "notes": notes, "images": images,
+            "backlinks": backlinks, "views": views}
 
 
 def _name(path: str) -> str:

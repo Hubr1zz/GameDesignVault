@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { StatusChip, Tag } from "./Chip";
-import { baseName, isNote, loadNoteText, thumbUrl } from "../data";
-import { headingId, linksInValue, renderNote } from "../markdown";
+import { baseName, loadNoteText, thumbUrl } from "../data";
+import { headingId, renderNote, valueHtml } from "../markdown";
 import { VIA_LABEL, byStatusThenTitle, classLabel, groupByClass, statusesOf } from "../model";
-import { artHref, noteHref } from "../router";
+import { artHref, noteHref, tableHref } from "../router";
 import type { Note, VaultIndex } from "../types";
 
 interface Props {
@@ -31,7 +31,10 @@ export function NotePage({ index, path, anchor }: Props) {
     };
   }, [path, index.generated, note]);
 
-  const html = useMemo(() => (text === null || !note ? "" : renderNote(text, { path, note })), [text, note, path]);
+  const html = useMemo(
+    () => (text === null || !note ? "" : renderNote(text, { path, note, index })),
+    [text, note, path, index]
+  );
 
   useEffect(() => {
     if (!html) return;
@@ -58,7 +61,13 @@ export function NotePage({ index, path, anchor }: Props) {
       <main className="note-main" ref={article}>
         <header className="note-head">
           <div className="note-meta">
-            <Tag>{classLabel(index, note.class)}</Tag>
+            {note.class ? (
+              <a className="tag" href={tableHref(index.classes[note.class].dir)} title="打开这一类的表格">
+                {classLabel(index, note.class)}
+              </a>
+            ) : (
+              <Tag>{classLabel(index, note.class)}</Tag>
+            )}
             <StatusChip status={note.status} statuses={statusesOf(index, note)} />
             <span className="note-path">{path}</span>
           </div>
@@ -68,9 +77,7 @@ export function NotePage({ index, path, anchor }: Props) {
               {fields.map(([key, value]) => (
                 <div key={key}>
                   <dt>{key}</dt>
-                  <dd>
-                    <FieldValue note={note} value={value} />
-                  </dd>
+                  <dd dangerouslySetInnerHTML={{ __html: valueHtml(value, path, note, index) }} />
                 </div>
               ))}
             </dl>
@@ -81,28 +88,6 @@ export function NotePage({ index, path, anchor }: Props) {
         <article className="markdown" dangerouslySetInnerHTML={{ __html: html }} />
       </main>
       <Relations index={index} path={path} note={note} />
-    </>
-  );
-}
-
-function FieldValue({ note, value }: { note: Note; value: unknown }) {
-  const links = linksInValue(value);
-  if (links.length === 0) return <>{Array.isArray(value) ? value.join("、") : String(value)}</>;
-  return (
-    <>
-      {links.map((link, i) => {
-        const target = note.targets[link.target];
-        return (
-          <span key={i}>
-            {i > 0 && "、"}
-            {target && isNote(target) ? (
-              <a href={noteHref(target)}>{link.label}</a>
-            ) : (
-              <span className="wikilink broken">{link.label}</span>
-            )}
-          </span>
-        );
-      })}
     </>
   );
 }
@@ -153,7 +138,7 @@ function Relations({ index, path, note }: { index: VaultIndex; path: string; not
                 return (
                   <li key={source}>
                     <StatusChip status={from.status} statuses={statusesOf(index, from)} />
-                    <a href={noteHref(source)} title={source}>{baseName(source)}</a>
+                    <a href={noteHref(source)} title={from.excerpt || source}>{baseName(source)}</a>
                     <span className="via">{how(source)}</span>
                   </li>
                 );
@@ -186,7 +171,7 @@ function Relations({ index, path, note }: { index: VaultIndex; path: string; not
                 {group.paths.map((target, i) => (
                   <span key={target}>
                     {i > 0 && "、"}
-                    <a href={noteHref(target)}>{baseName(target)}</a>
+                    <a href={noteHref(target)} title={index.notes[target].excerpt || target}>{baseName(target)}</a>
                   </span>
                 ))}
               </p>

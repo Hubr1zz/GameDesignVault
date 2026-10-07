@@ -24,6 +24,8 @@ export interface Note {
   targets: Record<string, string | null>;
   /** Markdown link destination as written -> vault path, or null. */
   hrefs: Record<string, string | null>;
+  /** First line of prose, as plain text. */
+  excerpt: string;
 }
 
 export interface ImageRecord {
@@ -39,6 +41,10 @@ export interface ClassSpec {
   dir: string;
   label: string;
   status: string[];
+  /** Frontmatter keys every note of the class must have. */
+  required: string[];
+  /** Frontmatter keys the class carries, required ones first. */
+  fields: string[];
 }
 
 export interface Backlink {
@@ -54,6 +60,8 @@ export interface VaultIndex {
   notes: Record<string, Note>;
   images: Record<string, ImageRecord>;
   backlinks: Record<string, Backlink[]>;
+  /** Saved views of a note tool (for example *.base) -> the folders they filter on. */
+  views: Record<string, string[]>;
 }
 
 export interface LintItem {

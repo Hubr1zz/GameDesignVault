@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export type Route =
   | { view: "note"; path: string; anchor?: string }
   | { view: "art"; image?: string }
+  | { view: "table"; folder: string }
   | { view: "inbox" }
   | { view: "home" };
 
@@ -16,6 +17,7 @@ export function parseRoute(hash: string): Route {
     return { view: "note", path: decodeURIComponent(rest.join("/")), anchor: query.get("h") ?? undefined };
   }
   if (view === "art") return { view: "art", image: query.get("image") ?? undefined };
+  if (view === "table" && rest.length) return { view: "table", folder: decodeURIComponent(rest.join("/")) };
   if (view === "inbox") return { view: "inbox" };
   return { view: "home" };
 }
@@ -29,6 +31,9 @@ export function artHref(image?: string): string {
 }
 
 export const inboxHref = "#/inbox";
+
+/** The table of every managed note in one class folder. */
+export const tableHref = (folder: string) => `#/table/${encodeURIComponent(folder)}`;
 
 export function useRoute(): Route {
   const [route, setRoute] = useState<Route>(() => parseRoute(window.location.hash));

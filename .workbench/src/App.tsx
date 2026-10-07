@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { ArtBoard } from "./components/ArtBoard";
+import { FolderTable } from "./components/FolderTable";
 import { Inbox } from "./components/Inbox";
 import { NotePage } from "./components/NotePage";
 import { Sidebar } from "./components/Sidebar";
@@ -35,6 +36,7 @@ export function App() {
   const { index, lint, log } = data;
   const home = index.notes["README.md"] ? "README.md" : Object.keys(index.notes)[0];
   const notePath = route.view === "note" ? route.path : route.view === "home" ? home : undefined;
+  const folder = route.view === "table" ? route.folder : undefined;
   const waiting = Object.values(index.notes).filter((note) => {
     const statuses = note.class ? (index.classes[note.class]?.status ?? []) : [];
     return statuses.length > 0 && note.status === statuses[0];
@@ -45,7 +47,7 @@ export function App() {
       <header className="topbar">
         <a className="brand" href={noteHref(home)}>{index.project ?? "设计工作台"}</a>
         <nav className="views">
-          <a className={notePath ? "on" : ""} href={noteHref(home)}>文档</a>
+          <a className={notePath || folder ? "on" : ""} href={noteHref(home)}>文档</a>
           <a className={route.view === "art" ? "on" : ""} href={artHref()}>
             美术 <span className="count">{Object.keys(index.images).length}</span>
           </a>
@@ -65,6 +67,12 @@ export function App() {
         <div className="docs">
           <Sidebar index={index} current={notePath} />
           <NotePage index={index} path={notePath} anchor={route.view === "note" ? route.anchor : undefined} />
+        </div>
+      )}
+      {folder !== undefined && (
+        <div className="docs wide">
+          <Sidebar index={index} />
+          <FolderTable key={folder} index={index} folder={folder} />
         </div>
       )}
       {route.view === "art" && <ArtBoard index={index} selected={route.image} />}

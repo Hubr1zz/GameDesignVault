@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { StatusChip } from "./Chip";
 import { baseName } from "../data";
-import { groupByClass, matchesQuery, statusesOf, subFolder } from "../model";
-import { noteHref } from "../router";
+import { OTHER, groupByClass, matchesQuery, statusesOf, subFolder } from "../model";
+import { noteHref, tableHref } from "../router";
 import type { VaultIndex } from "../types";
 
 interface Props {
@@ -35,7 +35,7 @@ export function Sidebar({ index, current }: Props) {
     });
   }, [index, query]);
 
-  const currentClass = current ? (index.notes[current]?.class ?? "__other") : undefined;
+  const currentClass = current ? (index.notes[current]?.class ?? OTHER) : undefined;
 
   return (
     <nav className="sidebar">
@@ -52,14 +52,21 @@ export function Sidebar({ index, current }: Props) {
         const open = toggled[group.key] ?? openByDefault;
         return (
           <section key={group.key} className="side-group">
-            <button
-              className="side-heading"
-              aria-expanded={open}
-              onClick={() => setToggled({ ...toggled, [group.key]: !open })}
-            >
-              <span>{open ? "▾" : "▸"} {group.label}</span>
+            <div className="side-heading">
+              <button
+                className="side-toggle"
+                aria-expanded={open}
+                onClick={() => setToggled({ ...toggled, [group.key]: !open })}
+              >
+                {open ? "▾" : "▸"} {group.label}
+              </button>
+              {group.key !== OTHER && (
+                <a className="side-table" href={tableHref(index.classes[group.key].dir)} title="以表格查看这一类">
+                  表格
+                </a>
+              )}
               <span className="count">{group.paths.length}</span>
-            </button>
+            </div>
             {open &&
               group.folders.map(({ folder, items }) => (
                 <div key={folder}>

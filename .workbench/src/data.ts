@@ -20,6 +20,13 @@ export async function loadData(): Promise<VaultData> {
     getJson<LintReport>("lint.json"),
     getJson<Commit[]>("log.json")
   ]);
+  // A server started before an update may still send the older, smaller index.
+  index.views ??= {};
+  for (const spec of Object.values(index.classes)) {
+    spec.fields ??= [];
+    spec.required ??= spec.fields;
+  }
+  for (const note of Object.values(index.notes)) note.excerpt ??= "";
   return { index, lint, log };
 }
 

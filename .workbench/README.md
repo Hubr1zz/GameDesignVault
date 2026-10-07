@@ -26,6 +26,23 @@ The front end issues nothing but relative GET requests:
 
 Link resolution is never done in the browser. The index records what each link as written points to (`targets`, `hrefs`), so the page shows exactly what lint checked.
 
+## Query blocks and tables
+
+A page made of query blocks would otherwise be empty here, so the workbench runs the simple ones itself. `src/query.ts` accepts exactly this shape of a `dataview` block:
+
+```
+TABLE [WITHOUT ID] field [AS "Label"], ...   or   LIST
+FROM "folder"
+WHERE field = value AND field != null
+SORT field ASC, field DESC
+```
+
+Anything else, and every `base` block, is shown as not executed, with the query text folded away and a link to the table of the folder it lists. Nothing is ever guessed: a table on the page is the exact result or it is not shown.
+
+Each class folder also has a table view of its own (`#/table/<folder>`): every managed note there, with the class's fields as sortable columns, a text search, status filters and a filter for notes whose required fields are empty. A link to a saved view of a note tool, such as a `.base` file, leads to that table.
+
+Links to notes carry the target's first line of prose as a tooltip, which makes every link to a term show its definition.
+
 ## Develop
 
 ```
@@ -42,6 +59,7 @@ npm run dev
 |---|---|
 | `src/data.ts` | Fetching and URL helpers |
 | `src/model.ts` | Grouping, ordering and status colours, all derived from the profile |
-| `src/markdown.ts` | Rendering a note body, wiki links included |
+| `src/markdown.ts` | Rendering a note body: wiki links, values, query blocks |
+| `src/query.ts` | Parsing and running the supported query shape |
 | `src/router.ts` | Hash routes |
-| `src/components/` | Sidebar, note page with relations, image board, inbox |
+| `src/components/` | Sidebar, note page with relations, folder table, image board, inbox |
