@@ -137,6 +137,12 @@ class Lint(unittest.TestCase):
         self.assertIn("[[Missing]] does not resolve", found)
         self.assertIn("Loose.md: type `Term` belongs in `glossary/`", found)
 
+    def test_navigation_paths_must_exist_unless_git_ignores_them(self):
+        v = make_vault({".gitignore": "# local\n.local-state/\n*.cache\n",
+                        ".design-workflow/workspace-map.md": "`design/` `.local-state/` `x.cache` `missing/`\n"})
+        found = [e for e in errors(v) if "[navigation]" in e]
+        self.assertEqual(found, ["[navigation] .design-workflow/workspace-map.md: `missing/` does not exist"])
+
     def test_tool_owned_keys_and_ignored_folders_are_left_alone(self):
         report = lint.check(make_vault())
         self.assertEqual([i for i in report.items if "_organized" in i[3] or i[2].startswith("code/")], [])

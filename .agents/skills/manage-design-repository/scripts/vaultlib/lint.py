@@ -129,8 +129,18 @@ def lint_links(v: Vault, r: Report):
                 r.error("links", rel, f"({href}) does not exist")
 
 
+def _git_ignored(v: Vault) -> list[str]:
+    """Patterns from the root .gitignore: such paths are machine-local and may be absent."""
+    path = v.root / ".gitignore"
+    if not path.is_file():
+        return []
+    return [line.strip().strip("/") for line in path.read_text(encoding="utf-8-sig").splitlines()
+            if line.strip() and not line.lstrip().startswith(("#", "!"))]
+
+
 def lint_navigation(v: Vault, r: Report):
     records = v.profile.get("records") or {}
+    ignored = _git_ignored(v)
     for key, rel in records.items():
         if key != "navigation" and isinstance(rel, str) and not (v.root / rel).exists():
             r.error("profile", PROFILE, f"records.{key} points to missing `{rel}`")
@@ -145,6 +155,9 @@ def lint_navigation(v: Vault, r: Report):
         for token in re.findall(r"`([^`\n]+)`", text):
             looks_like_path = token.endswith("/") or re.search(r"\.(md|yml|yaml|base|json|py)$", token)
             if not looks_like_path or re.search(r"[<>*{}$]|^\.\.?/|^\.[A-Za-z0-9]+$", token):
+                continue
+            clean = token.strip("/")
+            if any(fnmatch.fnmatch(clean, p) or clean.startswith(p + "/") for p in ignored):
                 continue
             if not (v.root / token).exists():
                 r.error("navigation", rel, f"`{token}` does not exist")
